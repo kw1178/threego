@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="배달내역" />
+    <item android:title="상세페이지" />
+    <item android:title="광고 Reward" />
+    <item android:title="공지사항" />
+    <item
+        android:id="@+id/cancle"
+        android:icon="@android:drawable/ic_delete"
+        android:title="닫기" />
+</menu>
