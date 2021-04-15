@@ -26,9 +26,9 @@ public class Fragment_new extends Fragment {
         lv = view.findViewById(R.id.list_new);
 
         // DB 연동 필요
-        delivery.add(new DeliveryVO("교촌치킨","3.0km","스마트미디어인재개발원","광주 교촌치킨 충장점","허니레드콤보",20000,2000));
-        delivery.add(new DeliveryVO("굽네치킨","1.0km","광주 금남로 ","광주 굽네치킨 충장점","고추바사삭",22000,2200));
-        delivery.add(new DeliveryVO("네네치킨","4.0km","광주 금남로 ","광주 네네치킨 충장점","파닭",24000,2400));
+//        delivery.add(new DeliveryVO("교촌치킨","3.0km","스마트미디어인재개발원","광주 교촌치킨 충장점","허니레드콤보",20000,2000));
+//        delivery.add(new DeliveryVO("굽네치킨","1.0km","광주 금남로 ","광주 굽네치킨 충장점","고추바사삭",22000,2200));
+//        delivery.add(new DeliveryVO("네네치킨","4.0km","광주 금남로 ","광주 네네치킨 충장점","파닭",24000,2400));
 
         DeliveryAdapter adapter = new DeliveryAdapter(view.getContext(),R.layout.delivery_list,delivery);
         lv.setAdapter(adapter);

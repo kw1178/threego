@@ -24,7 +24,7 @@ public class Fragment_choice extends Fragment {
 
 
         // DB 연동 필요
-        delivery.add(new DeliveryVO("굽네치킨","1.0km","광주 금남로 ","광주 굽네치킨 충장점","고추바사삭",22000,2200));
+        //delivery.add(new DeliveryVO("굽네치킨","1.0km","광주 금남로 ","광주 굽네치킨 충장점","고추바사삭",22000,2200));
 
         DeliveryAdapter adapter = new DeliveryAdapter(view.getContext(),R.layout.delivery_list,delivery);
         lv.setAdapter(adapter);

@@ -18,8 +18,8 @@ public class ReadMe {
     *  3. 지도 페이지
     *    MapActivity, activity_map.xml - 구글 지도 화면
     *
-    *  4. 배달내역 페이지
-    *    ListActivity, activity_list.xml - 배달 내역 화면
+    *  4. 콜비내역 페이지
+    *    ListActivity, activity_list.xml - 콜비 내역 화면
     *
     *  5. 광고 페이지
     *    AdActivity, activity_ad.xml - 광고 화면
@@ -32,7 +32,7 @@ public class ReadMe {
     *  7. 상세 페이지
     *    MypageActivity, activity_mypage.xml - 상세페이지 화면
     *   ReviewActivity, activity_review.xml - 한줄평 화면
-    *   ReviewVO, ReviewAdapter, review_list.xml - listView 화면
+    *   ReviewVO, review_list.xml - listView 화면
      *
      *  8. 예치금 내역 페이지
     *    MoneyActivity, activity_money.xml - 예치금 화면
