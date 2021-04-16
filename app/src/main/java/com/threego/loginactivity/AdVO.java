@@ -5,16 +5,26 @@ public class AdVO {
     private String src;
     private String adTitle;
     private String adContent;
-    private String onGoing;
+    private String adType;
+    private int cnt;
 
     public AdVO() {
     }
 
-    public AdVO(String src, String adTitle, String adContent, String onGoing) {
+    //일반광고 - 경로, 이름, 내용, 배달중 여부
+    public AdVO(String src, String adTitle, String adContent, String adType) {
         this.src = src;
         this.adTitle = adTitle;
         this.adContent = adContent;
-        this.onGoing = onGoing;
+        this.adType = adType;
+    }
+
+    //영상광고 - 경로, 이름, 내용, 횟수
+    public AdVO(String src, String adTitle, String adContent, int cnt) {
+        this.src = src;
+        this.adTitle = adTitle;
+        this.adContent = adContent;
+        this.cnt = cnt;
     }
 
     public String getSrc() {
@@ -41,12 +51,12 @@ public class AdVO {
         this.adContent = adContent;
     }
 
-    public String getOnGoing() {
-        return onGoing;
+    public String getAdType() {
+        return adType;
     }
 
-    public void setOnGoing(String onGoing) {
-        this.onGoing = onGoing;
+    public void setAdType(String adType) {
+        this.adType = adType;
     }
 
     @Override
@@ -55,7 +65,7 @@ public class AdVO {
                 "src='" + src + '\'' +
                 ", adTitle='" + adTitle + '\'' +
                 ", adContents='" + adContent + '\'' +
-                ", onGoing='" + onGoing + '\'' +
+                ", onGoing='" + adType + '\'' +
                 '}';
     }
 }

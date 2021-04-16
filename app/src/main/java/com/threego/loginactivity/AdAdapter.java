@@ -44,23 +44,28 @@ public class AdAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        if(convertView==null){
+        if (convertView == null) {
             convertView = inflater.inflate(layout, parent, false);
 
-            //ImageView src = convertView.findViewById(R.id.adImg);
-            //src.setImageResource(data.get(position).getImg());
-
-            Glide.with(convertView.getContext()).load(data.get(position).getSrc()).
-                    into((ImageView) convertView.findViewById(R.id.adImg));
-
+            ImageView src = convertView.findViewById(R.id.adImg);
             TextView title = convertView.findViewById(R.id.adTitle);
-            title.setText(data.get(position).getAdTitle());
-
             TextView content = convertView.findViewById(R.id.adContent);
-            content.setText(data.get(position).getAdContent());
+            TextView type = convertView.findViewById(R.id.adOn);
 
-            TextView onGoing = convertView.findViewById(R.id.adOn);
-            onGoing.setText(data.get(position).getOnGoing());
+            //if (data.get(position).getAdType().equals("pic")) {
+
+                Glide.with(convertView.getContext()).load(data.get(position).getSrc()).
+                        into((ImageView) convertView.findViewById(R.id.adImg));
+                title.setText(data.get(position).getAdTitle());
+                content.setText(data.get(position).getAdContent());
+                type.setVisibility(View.GONE);
+
+//            }else{
+//                src.setVisibility(View.GONE);
+//                title.setVisibility(View.GONE);
+//                content.setVisibility(View.GONE);
+//                type.setVisibility(View.GONE);
+//            }
         }
         return convertView;
     }
