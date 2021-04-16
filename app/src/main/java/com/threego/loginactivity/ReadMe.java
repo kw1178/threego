@@ -26,8 +26,7 @@ public class ReadMe {
     *
     *  6. 공지사항 페이지
     *    NoticeActivity, activity_notice.xml - 공지사항 화면
-    *    Fragment_notice, fragment_notice.xml - 공지사항 자세히 보기
-    *    NoticeVO, NoticeAdapter, notice_list.xml - listView 화면
+    *    NoticeVO, notice_list.xml - listView 화면
     *
     *  7. 상세 페이지
     *    MypageActivity, activity_mypage.xml - 상세페이지 화면

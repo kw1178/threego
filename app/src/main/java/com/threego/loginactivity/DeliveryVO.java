@@ -20,6 +20,8 @@ public class DeliveryVO {
     private String dl_distoadd;     // 가게 - 고객집거리
     private String dl_dltime;   // 배달완료예상시간
 
+
+
     public int getDl_number() {
         return dl_number;
     }
@@ -146,5 +148,27 @@ public class DeliveryVO {
 
     public void setDl_dltime(String dl_dltime) {
         this.dl_dltime = dl_dltime;
+    }
+
+    @Override
+    public String toString() {
+        return "DeliveryVO{" +
+                "dl_number=" + dl_number +
+                ", dl_date='" + dl_date + '\'' +
+                ", r_id='" + r_id + '\'' +
+                ", dl_shop='" + dl_shop + '\'' +
+                ", dl_food='" + dl_food + '\'' +
+                ", dl_price=" + dl_price +
+                ", dl_cooktime='" + dl_cooktime + '\'' +
+                ", dl_address='" + dl_address + '\'' +
+                ", dl_call=" + dl_call +
+                ", dl_status='" + dl_status + '\'' +
+                ", dl_r_lati='" + dl_r_lati + '\'' +
+                ", dl_r_longi='" + dl_r_longi + '\'' +
+                ", dl_shoploc='" + dl_shoploc + '\'' +
+                ", dl_distoshop='" + dl_distoshop + '\'' +
+                ", dl_distoadd='" + dl_distoadd + '\'' +
+                ", dl_dltime='" + dl_dltime + '\'' +
+                '}';
     }
 }

@@ -47,12 +47,8 @@ public class NoticeAdapter extends BaseAdapter {
         }
 
         TextView tv_num = convertView.findViewById(R.id.tv_num);
-        TextView tv_title = convertView.findViewById(R.id.tv_title);
-        TextView tv_date = convertView.findViewById(R.id.tv_date);
 
-        tv_num.setText(data.get(position).getN_seq()+"");
-        tv_title.setText(data.get(position).getN_title());
-        tv_date.setText(data.get(position).getN_date());
+
 
         return convertView;
     }

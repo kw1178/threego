@@ -1,29 +1,18 @@
 package com.threego.loginactivity;
 
 public class NoticeVO {
-    private int n_seq; // 시퀀스
+    private int n_postnum; // 시퀀스
     private String n_title; // 제목
     private String n_date; // 날짜
     private String n_content; // 내용
+    private String r_id; // 라이더 아이디
 
-    public NoticeVO(int n_seq, String n_title, String n_date) {
-        this.n_seq = n_seq;
-        this.n_title = n_title;
-        this.n_date = n_date;
+    public int getN_postnum() {
+        return n_postnum;
     }
 
-    public NoticeVO(String n_title, String n_date, String n_content) {
-        this.n_title = n_title;
-        this.n_date = n_date;
-        this.n_content = n_content;
-    }
-
-    public int getN_seq() {
-        return n_seq;
-    }
-
-    public void setN_seq(int n_seq) {
-        this.n_seq = n_seq;
+    public void setN_postnum(int n_postnum) {
+        this.n_postnum = n_postnum;
     }
 
     public String getN_title() {
@@ -50,13 +39,22 @@ public class NoticeVO {
         this.n_content = n_content;
     }
 
+    public String getR_id() {
+        return r_id;
+    }
+
+    public void setR_id(String r_id) {
+        this.r_id = r_id;
+    }
+
     @Override
     public String toString() {
         return "NoticeVO{" +
-                "n_seq=" + n_seq +
+                "n_postnum=" + n_postnum +
                 ", n_title='" + n_title + '\'' +
                 ", n_date='" + n_date + '\'' +
                 ", n_content='" + n_content + '\'' +
+                ", r_id='" + r_id + '\'' +
                 '}';
     }
 }
