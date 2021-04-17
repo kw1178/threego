@@ -1,83 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MapActivity" >
+    tools:context="com.threego.loginactivity.MapActivity">
 
-    <FrameLayout
-        android:id="@+id/fram_map"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guideline22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.473">
 
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        <LinearLayout
+            android:id="@+id/linearLayoutTmap"
             android:layout_width="match_parent"
-            android:layout_height="575dp"
-            tools:context=".fragment_gMap" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView3"
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline27"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginLeft="60dp"
-            android:layout_marginBottom="100dp"
-            android:text="거리"
-            android:textSize="30sp" />
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="309dp" />
 
         <TextView
-            android:id="@+id/tv_house"
+            android:id="@+id/tv_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginLeft="140dp"
-            android:layout_marginBottom="100dp"
-            android:text="3.0km"
-            android:textSize="30sp" />
+            android:text="신규"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.45" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tv_map_shop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:layout_gravity="bottom|center"
-            android:layout_marginRight="150dp"
-            android:layout_marginBottom="100dp"
-            android:text="배송비" />
+            android:layout_marginStart="36dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="24dp"
+            android:text="가게이름"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_call"
+            android:id="@+id/tv_map_food"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="100dp"
-            android:text="2000원"
-            android:textSize="28sp" />
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="(라면)"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_map_shop"
+            app:layout_constraintStart_toEndOf="@+id/tv_map_shop"
+            app:layout_constraintTop_toTopOf="@+id/tv_map_shop"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_map_foodfinish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10분 후 조리완료"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_map_food"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.909"
+            app:layout_constraintStart_toEndOf="@+id/tv_map_food"
+            app:layout_constraintTop_toTopOf="@+id/tv_map_food" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="배달비"
+            app:layout_constraintStart_toStartOf="@+id/tv_map_shop"
+            app:layout_constraintTop_toBottomOf="@+id/tv_map_shop" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginLeft="28dp"
+            android:text="2,000원"
+            app:layout_constraintBottom_toBottomOf="@+id/textView24"
+            app:layout_constraintStart_toEndOf="@+id/textView24"
+            app:layout_constraintTop_toTopOf="@+id/textView24" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="여기에 고객주소가 나올건데 옆에 도착사진 하나 넣으면 좋을듯~"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline26"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
         <Button
-            android:id="@+id/btn_cancle"
+            android:id="@+id/btn_select"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="배정"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline26" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:text="취소"
-            android:textSize="30sp"
-            android:layout_width="180dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center|bottom"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="470dp" />
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_select"
+            app:layout_constraintEnd_toStartOf="@+id/btn_tmap"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_select"
+            app:layout_constraintTop_toTopOf="@+id/btn_select" />
 
         <Button
-            android:id="@+id/btn_ok"
-            android:text="수락"
-            android:textSize="30sp"
-            android:layout_width="180dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center|bottom"
-            android:layout_marginTop="470dp"
-            android:layout_marginRight="100dp" />
+            android:id="@+id/btn_tmap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="경로안내"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_cancel"
+            app:layout_constraintTop_toTopOf="@+id/btn_cancel" />
 
-    </FrameLayout>
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="20dp"
+            android:text="현 >> 가게 300m"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="116dp"
+            android:layout_marginLeft="116dp"
+            android:text="가게 >> 고객 2km"
+            app:layout_constraintBottom_toBottomOf="@+id/textView28"
+            app:layout_constraintStart_toEndOf="@+id/textView28"
+            app:layout_constraintTop_toTopOf="@+id/textView28"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

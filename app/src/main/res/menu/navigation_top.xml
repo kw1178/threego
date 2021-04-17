@@ -4,11 +4,14 @@
 
     <item
         android:id="@+id/menu_new"
-        android:title="0 신규" />
+        android:actionLayout="@layout/fragment_new"
+        android:title="신규" />
     <item
         android:id="@+id/menu_choice"
-        android:title="0 배정" />
+        android:actionLayout="@layout/fragment_choice"
+        android:title="배정" />
     <item
         android:id="@+id/menu_ok"
-        android:title="0 완료" />
+        android:actionLayout="@layout/fragment_ok"
+        android:title="완료" />
 </menu>

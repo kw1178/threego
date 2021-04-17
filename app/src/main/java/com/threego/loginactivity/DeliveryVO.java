@@ -15,12 +15,13 @@ public class DeliveryVO {
     private String dl_status;   // 콜 상태
     private String dl_r_lati;   // 라이더 위도
     private String dl_r_longi;  // 라이더 경도
-    private String dl_shoploc;  // 가게 위치
+    private String dl_s_lati;  // 가게 위치
+    private String dl_s_longi;
     private String dl_distoshop;    // 현위치-가게거리
     private String dl_distoadd;     // 가게 - 고객집거리
     private String dl_dltime;   // 배달완료예상시간
-
-
+    private String dl_c_lati;
+    private String dl_c_longi;
 
     public int getDl_number() {
         return dl_number;
@@ -118,12 +119,20 @@ public class DeliveryVO {
         this.dl_r_longi = dl_r_longi;
     }
 
-    public String getDl_shoploc() {
-        return dl_shoploc;
+    public String getDl_s_lati() {
+        return dl_s_lati;
     }
 
-    public void setDl_shoploc(String dl_shoploc) {
-        this.dl_shoploc = dl_shoploc;
+    public void setDl_s_lati(String dl_s_lati) {
+        this.dl_s_lati = dl_s_lati;
+    }
+
+    public String getDl_s_longi() {
+        return dl_s_longi;
+    }
+
+    public void setDl_s_longi(String dl_s_longi) {
+        this.dl_s_longi = dl_s_longi;
     }
 
     public String getDl_distoshop() {
@@ -150,6 +159,22 @@ public class DeliveryVO {
         this.dl_dltime = dl_dltime;
     }
 
+    public String getDl_c_lati() {
+        return dl_c_lati;
+    }
+
+    public void setDl_c_lati(String dl_c_lati) {
+        this.dl_c_lati = dl_c_lati;
+    }
+
+    public String getDl_c_longi() {
+        return dl_c_longi;
+    }
+
+    public void setDl_c_longi(String dl_c_longi) {
+        this.dl_c_longi = dl_c_longi;
+    }
+
     @Override
     public String toString() {
         return "DeliveryVO{" +
@@ -165,10 +190,13 @@ public class DeliveryVO {
                 ", dl_status='" + dl_status + '\'' +
                 ", dl_r_lati='" + dl_r_lati + '\'' +
                 ", dl_r_longi='" + dl_r_longi + '\'' +
-                ", dl_shoploc='" + dl_shoploc + '\'' +
+                ", dl_s_lati='" + dl_s_lati + '\'' +
+                ", dl_s_longi='" + dl_s_longi + '\'' +
                 ", dl_distoshop='" + dl_distoshop + '\'' +
                 ", dl_distoadd='" + dl_distoadd + '\'' +
                 ", dl_dltime='" + dl_dltime + '\'' +
+                ", dl_c_lati='" + dl_c_lati + '\'' +
+                ", dl_c_longi='" + dl_c_longi + '\'' +
                 '}';
     }
 }

@@ -7,7 +7,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -27,8 +26,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,7 +57,7 @@ public class ListActivity extends AppCompatActivity {
         tv_c_date = findViewById(R.id.tv_c_date);
         tv_c_date.setVisibility(View.INVISIBLE);
 
-        tv_choice=findViewById(R.id.tv_choice);
+        tv_choice=findViewById(R.id.tv_choice2);
 
         iv_menu = findViewById(R.id.iv_menu);
         ibtn_close = findViewById(R.id.ibtn_close);

@@ -53,14 +53,18 @@ public class DeliveryAdapter extends BaseAdapter {
         TextView tv_price = convertView.findViewById(R.id.tv_allprice);
         TextView tv_call = convertView.findViewById(R.id.tv_call);
         TextView tv_food = convertView.findViewById(R.id.tv_food);
+        TextView tv_hometime = convertView.findViewById(R.id.tv_hometime);
+        TextView tv_shoptime = convertView.findViewById(R.id.tv_shoptime);
+
 
         tv_shop.setText(data.get(position).getDl_shop());
         tv_house.setText(data.get(position).getDl_distoadd());
         tv_address.setText(data.get(position).getDl_address());
-        tv_shoplocation.setText(data.get(position).getDl_shoploc());
         tv_price.setText(data.get(position).getDl_price()+"");
         tv_call.setText(data.get(position).getDl_call()+"");
         tv_food.setText(data.get(position).getDl_food());
+        tv_hometime.setText(data.get(position).getDl_dltime());
+        tv_shoptime.setText(data.get(position).getDl_cooktime());
 
         return convertView;
     }
