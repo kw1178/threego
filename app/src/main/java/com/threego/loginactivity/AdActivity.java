@@ -36,7 +36,8 @@ import static androidx.core.view.GravityCompat.START;
 
 public class AdActivity extends AppCompatActivity {
 
-    //일반광고, 영상광고,
+    //adRequestQueue, adStringRequest 일반광고
+    // vidRequestQueue, vidStringRequest 영상광고
     RequestQueue adReq, vidReq;
     StringRequest adStrReq, vidStrReq;
 
@@ -140,13 +141,12 @@ public class AdActivity extends AppCompatActivity {
             }
         });
 
-        // DB 연동 필요
+        // 영상광고 연동
         //tv_ad_name.setText("BURGER KING 기네스 와퍼");
         tv_money.setText("2350");
 
         vidReq = Volley.newRequestQueue(getApplicationContext());
         String vidUrl = "http://222.102.104.235:8081/threego/appvid.do";
-
 
         vidStrReq = new StringRequest(Request.Method.GET, vidUrl, new Response.Listener<String>() {
             @Override
@@ -183,7 +183,7 @@ public class AdActivity extends AppCompatActivity {
         // progress bar 바꾸기, 알고리즘 필요
         //pro.setProgress(getPlayTime("android.resource://"+getPackageName()+"/"+id));
 
-        // 이미지뷰
+        // 이미지뷰 연동
         adReq = Volley.newRequestQueue(getApplicationContext());
         String adUrl = "http://222.102.104.235:8081/threego/appads.do";
 
