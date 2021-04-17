@@ -22,7 +22,7 @@
         <activity android:name=".ListActivity" />
         <activity android:name=".AdActivity" />
         <activity android:name=".NoticeActivity" />
-        <activity android:name=".MapActivity" />
+        <activity android:name=".MapActivity"></activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".JoinActivity" />
         <activity android:name=".LoginActivity">
@@ -32,14 +32,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+<!--
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCXKSkHCjszmBdAnOD0Xr-U4bcXN4Jx9FU" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
+-->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
