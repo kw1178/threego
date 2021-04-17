@@ -48,7 +48,7 @@ public class DeliveryAdapter extends BaseAdapter {
         }
         TextView tv_shop = convertView.findViewById(R.id.tv_shop);
         TextView tv_house = convertView.findViewById(R.id.tv_house);
-        TextView tv_address = convertView.findViewById(R.id.tv_address);
+        TextView tv_address = convertView.findViewById(R.id.tv_c_address);
         TextView tv_shoplocation = convertView.findViewById(R.id.tv_shoplocation);
         TextView tv_price = convertView.findViewById(R.id.tv_allprice);
         TextView tv_call = convertView.findViewById(R.id.tv_call);

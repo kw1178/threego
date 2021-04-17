@@ -35,7 +35,7 @@ public class Fragment_new extends Fragment {
     RequestQueue requestQueue;
     StringRequest stringRequest;
     DeliveryAdapter adapter;
-    TextView tv_new;
+    TextView tv_new2;
 
 
     @Override
@@ -43,7 +43,8 @@ public class Fragment_new extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new, container, false);
 
-        tv_new = view.findViewById(R.id.tv_new2);
+        tv_new2 = view.findViewById(R.id.tv_new2);
+
 
         lv = view.findViewById(R.id.list);
 
@@ -62,6 +63,7 @@ public class Fragment_new extends Fragment {
                     if (position==i){
                         // fragment에서는 this 대신 getActivity 를 사용한다.
                         Intent intent = new Intent(getActivity(), MapActivity.class);
+                        intent.putExtra("dl_number",delivery.get(i).getDl_number());
                         startActivity(intent);
                     }
 
@@ -93,6 +95,7 @@ public class Fragment_new extends Fragment {
                         deliveryVO.setDl_dltime(jobj.getString("dl_dltime"));
                         deliveryVO.setDl_cooktime(jobj.getString("dl_cooktime"));
                         deliveryVO.setDl_address(jobj.getString("dl_address"));
+                        deliveryVO.setDl_number(jobj.getInt("dl_number"));
 
                         delivery.add(deliveryVO);
                         adapter.notifyDataSetChanged();
@@ -113,7 +116,7 @@ public class Fragment_new extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
-                temp.put("dl_status",tv_new.getText().toString());
+                temp.put("dl_status",tv_new2.getText().toString());
 
                 return temp;
             }
