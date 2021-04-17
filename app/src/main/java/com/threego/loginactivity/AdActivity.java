@@ -25,7 +25,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,11 +42,11 @@ public class AdActivity extends AppCompatActivity {
 
     ImageView iv_menu, iv_gif;
     ImageButton ibtn_close;
-    TextView tv_money, tv_ad_name;
+    TextView tv_money, tv_ad_name, tv_time;
     ProgressBar pro;
     VideoView videoView;
     MediaController mediaController;
-    String videoUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"; // 경로, 확장자까지 필요
+    //String videoUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"; // 경로, 확장자까지 필요
     DrawerLayout drawerLayout;
     Button btn_delivery, btn_mypage, btn_ad, btn_money, btn_notice, btn_change, btn_home;
 
@@ -63,8 +62,9 @@ public class AdActivity extends AppCompatActivity {
 
         tv_ad_name = findViewById(R.id.tv_ad_name);
         tv_money = findViewById(R.id.tv_money);
+        tv_time = findViewById(R.id.tv_time);
 
-        pro = findViewById(R.id.pro);
+        //pro = findViewById(R.id.pro);
 
         videoView = (VideoView) findViewById(R.id.videoView);
         //iv_gif = findViewById(R.id.imageView4);
@@ -147,14 +147,16 @@ public class AdActivity extends AppCompatActivity {
         vidReq = Volley.newRequestQueue(getApplicationContext());
         String vidUrl = "http://222.102.104.235:8081/threego/appvid.do";
 
+
         vidStrReq = new StringRequest(Request.Method.GET, vidUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Log.d("test", response.toString());
+                int max = 0;
                 try {
                     JSONObject obj = new JSONObject(response);
-                    tv_ad_name.setText(obj.getString("a_name"));
-
+                    tv_ad_name.setText(obj.getString("a_contents")+" : "+obj.getString("a_name"));
+                    tv_time.setText(obj.getString("a_time"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -170,16 +172,16 @@ public class AdActivity extends AppCompatActivity {
         vidReq.add(vidStrReq);
 
         // videoView 사용하기
+        int id = getRawResIdByName("alssa");
         mediaController = new MediaController(this); // 미디어 제어 부분
         mediaController.setAnchorView(videoView);   // videoView에 연결
-        Uri uri = Uri.parse(videoUrl);
+        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+id);
         videoView.setMediaController(mediaController);  // 미디어 제어 부분 세팅
         videoView.setVideoURI(uri); // url 연결
         videoView.start();
 
         // progress bar 바꾸기, 알고리즘 필요
-        pro.setProgress(100);
-        pro.setMax(getPlayTime(videoUrl));
+        //pro.setProgress(getPlayTime("android.resource://"+getPackageName()+"/"+id));
 
         // 이미지뷰
         adReq = Volley.newRequestQueue(getApplicationContext());
@@ -252,7 +254,7 @@ public class AdActivity extends AppCompatActivity {
             }
         });
 
-    }
+    } //_onCreate
 
     // 네비게이션 설정
     @Override
@@ -276,5 +278,14 @@ public class AdActivity extends AppCompatActivity {
 //        long minutes = (duration - hours * 3600) / 60;
 //        long seconds = duration - (hours*3600+minutes*60);
         return (int)second;
+    }
+
+    // raw
+    public int getRawResIdByName(String resName) {
+        String pkgName = this.getPackageName();
+        // Return 0 if not found.
+        int resID = this.getResources().getIdentifier(resName, "raw", pkgName);
+        Log.i("AndroidVideoView", "Res Name: " + resName + "==> Res ID = " + resID);
+        return resID;
     }
 }
