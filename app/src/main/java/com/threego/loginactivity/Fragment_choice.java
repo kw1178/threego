@@ -34,17 +34,17 @@ public class Fragment_choice extends Fragment {
     StringRequest stringRequest;
     DeliveryAdapter adapter;
     TextView tv_choice;
-
+    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_choice, container, false);
+        view = inflater.inflate(R.layout.fragment_choice, container, false);
 
         tv_choice = view.findViewById(R.id.tv_choice2);
         lv = view.findViewById(R.id.list_choice);
 
-
+        delivery.clear();
         requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
         jsonParse();
 
@@ -75,15 +75,20 @@ public class Fragment_choice extends Fragment {
                         deliveryVO.setDl_dltime(jobj.getString("dl_dltime"));
                         deliveryVO.setDl_cooktime(jobj.getString("dl_cooktime"));
                         deliveryVO.setDl_address(jobj.getString("dl_address"));
+                        deliveryVO.setDl_number(jobj.getInt("dl_number"));
+                        deliveryVO.setDl_s_lati(jobj.getString("dl_s_lati"));
+                        deliveryVO.setDl_s_longi(jobj.getString("dl_s_longi"));
 
                         delivery.add(deliveryVO);
-                        adapter.notifyDataSetChanged();
 
                     }
                     Log.v("cha", response +"");
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+                adapter = new DeliveryAdapter(view.getContext(),R.layout.delivery_list,delivery);
+                lv.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener() {
             @Override

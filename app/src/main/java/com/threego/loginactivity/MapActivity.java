@@ -11,12 +11,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -43,9 +47,9 @@ import java.util.Map;
 
 
 public class MapActivity extends AppCompatActivity {
-    Button btn_cancel, btn_tmap;
+    Button btn_cancel, btn_tmap, btn_select;
     BottomNavigationView bv, bv2;
-    TextView tv_new, tv_address2;
+    TextView tv_new, tv_address2, tv_map_shop, tv_map_food, tv_map_foodfinish, tv_map_call;
 
     StringRequest stringRequest;
     RequestQueue requestQueue;
@@ -58,6 +62,8 @@ public class MapActivity extends AppCompatActivity {
     TMapPoint tMapPoint1, tMapPoint2, tMapPoint3, tStart, tEnd;
     ArrayList<TMapPoint> alTMapPoint = new ArrayList<TMapPoint>();
     TMapCircle tMapCircle;
+    Fragment_choice fragment_choice;
+    FrameLayout list;
 
     String dl_r_longi, dl_r_lati, dl_c_longi, dl_c_lati, dl_s_longi, dl_s_lati;
 
@@ -66,17 +72,20 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        fragment_choice = new Fragment_choice();
         btn_cancel = findViewById(R.id.btn_cancel);
         btn_tmap = findViewById(R.id.btn_tmap);
+        btn_select = findViewById(R.id.btn_select);
+
+        list = findViewById(R.id.list);
 
         tv_new = findViewById(R.id.tv_new);
-
-        Intent intent = getIntent();
-        String dl_number = intent.getExtras().getString("dl_number");
-        tv_new.setText(dl_number);
-        Log.v("number",tv_new.getText().toString());
-
         tv_address2 = findViewById(R.id.tv_c_address);
+
+        tv_map_shop = findViewById(R.id.tv_map_shop);
+        tv_map_foodfinish = findViewById(R.id.tv_map_foodfinish);
+        tv_map_food = findViewById(R.id.tv_map_food);
+        tv_map_call = findViewById(R.id.tv_map_call);
 
         bv = (BottomNavigationView) findViewById(R.id.menu_new);
         bv2 = (BottomNavigationView) findViewById(R.id.menu_choice);
@@ -86,7 +95,6 @@ public class MapActivity extends AppCompatActivity {
         String url = "http://222.102.104.230:8081/threego/location.do";
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
-
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -106,8 +114,17 @@ public class MapActivity extends AppCompatActivity {
                     deliveryVO.setDl_address(jobj.getString("dl_address"));
                     deliveryVO.setDl_shop(jobj.getString("dl_shop"));
                     deliveryVO.setDl_location(jobj.getString("dl_location"));
+                    deliveryVO.setDl_call(jobj.getInt("dl_call"));
+                    deliveryVO.setDl_shop(jobj.getString("dl_shop"));
+                    deliveryVO.setDl_food(jobj.getString("dl_food"));
+                    deliveryVO.setDl_cooktime(jobj.getString("dl_cooktime"));
 
                     Log.v("soo",deliveryVO.getDl_c_longi()+"");
+                    tv_map_call.setText(deliveryVO.getDl_call()+"");
+                    Log.v("soo",deliveryVO.getDl_call()+"");
+                    tv_map_food.setText(deliveryVO.getDl_food());
+                    tv_map_foodfinish.setText(deliveryVO.getDl_cooktime());
+                    tv_map_shop.setText(deliveryVO.getDl_shop());
 
                     dl_c_lati = deliveryVO.getDl_c_lati();
                     dl_c_longi = deliveryVO.getDl_c_longi();
@@ -272,8 +289,11 @@ public class MapActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
-                temp.put("dl_number", tv_new.getText().toString());
-                Log.v("number",tv_new.getText().toString());
+                Intent intent1 = getIntent();
+                int dl_number1 = intent1.getExtras().getInt("dl_number");
+
+                temp.put("dl_number", dl_number1+"");
+                Log.v("number",dl_number1+"");
                 return temp;
             }
         }; // end request
@@ -285,11 +305,18 @@ public class MapActivity extends AppCompatActivity {
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bv+""));
+                Intent intent = new Intent(MapActivity.this,MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
+        btn_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               getSupportFragmentManager().beginTransaction().replace(R.id.list,fragment_choice).commit();
+            }
+        });
     }
 
 
