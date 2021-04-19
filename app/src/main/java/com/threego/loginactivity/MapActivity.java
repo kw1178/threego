@@ -348,7 +348,7 @@ public class MapActivity extends AppCompatActivity {
         });
 
         // 신규상태 -> 배정상태로 업데이트 통신
-        String statusUrl = "http://222.102.104.230:8081/threego/statusupdate.do";
+        String statusUrl = "http://222.102.104.230:8081/threego/statusUpdate.do";
         requestQueue2 = Volley.newRequestQueue(getApplicationContext());
 
         stringRequest2 = new StringRequest(Request.Method.POST, statusUrl, new Response.Listener<String>() {
@@ -415,6 +415,7 @@ public class MapActivity extends AppCompatActivity {
                             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    requestQueue2.add(stringRequest2);
 
                                     Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.parse("sms:010-4200-5974"));
                                     intent.putExtra("sms_body",adapter.getItem(position)+"");
