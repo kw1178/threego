@@ -415,6 +415,7 @@ public class MapActivity extends AppCompatActivity {
                             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    requestQueue2.add(stringRequest2);
 
                                     Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.parse("sms:010-4200-5974")); // 고객 전화번호 DB값 필요!
                                     intent.putExtra("sms_body",adapter.getItem(position)+"");
