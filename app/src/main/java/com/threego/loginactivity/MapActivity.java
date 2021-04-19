@@ -348,7 +348,7 @@ public class MapActivity extends AppCompatActivity {
         });
 
         // 신규상태 -> 배정상태로 업데이트 통신
-        String statusUrl = "http://222.102.104.230:8081/threego/statusupdate.do";
+        String statusUrl = "http://222.102.104.230:8081/threego/statusUpdate.do";
         requestQueue2 = Volley.newRequestQueue(getApplicationContext());
 
         stringRequest2 = new StringRequest(Request.Method.POST, statusUrl, new Response.Listener<String>() {
@@ -390,13 +390,13 @@ public class MapActivity extends AppCompatActivity {
                     @SuppressLint("IntentReset")
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                         ArrayList<String> dialog1 = new ArrayList<>();
                         dialog1.add("10분 뒤 도착예정입니다.");
                         dialog1.add("가는 중");
                         dialog1.add("준비해라");
                         dialog1.add("배달잡았다.");
                         dialog1.add("내가 1등임 ㅇㅇ");
-                        dialog1.add("권우형아 멋져");
 
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(),R.layout.dialog_list, dialog1);
                         listView.setAdapter(adapter);
@@ -416,7 +416,7 @@ public class MapActivity extends AppCompatActivity {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                                    Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.parse("sms:010-4200-5974"));
+                                    Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.parse("sms:010-4200-5974")); // 고객 전화번호 DB값 필요!
                                     intent.putExtra("sms_body",adapter.getItem(position)+"");
                                     startActivity(intent);
                                     finish();
