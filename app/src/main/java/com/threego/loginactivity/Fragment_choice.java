@@ -1,10 +1,12 @@
 package com.threego.loginactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -50,6 +52,22 @@ public class Fragment_choice extends Fragment {
 
         adapter = new DeliveryAdapter(view.getContext(),R.layout.delivery_list,delivery);
         lv.setAdapter(adapter);
+
+        // 리스트 선택 시 MapActivity2로 넘어가기
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                for (int i =0; i<delivery.size();i++){
+                    if (position==i){
+                        // fragment에서는 this 대신 getActivity 를 사용한다.
+                        Intent intent = new Intent(getActivity(), MapActivity2.class);
+                        intent.putExtra("dl_number",delivery.get(i).getDl_number());
+                        startActivity(intent);
+                    }
+                }
+            }
+        });
+
         return view;
     }
 

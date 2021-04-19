@@ -1,24 +1,14 @@
 package com.threego.loginactivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.service.restrictions.RestrictionsReceiver;
-import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,15 +17,11 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -58,15 +44,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
-public class MapActivity extends AppCompatActivity {
+public class MapActivity2 extends AppCompatActivity {
     Button btn_cancel, btn_tmap, btn_select;
     BottomNavigationView bv, bv2;
     TextView tv_new, tv_address2, tv_map_shop, tv_map_food, tv_map_foodfinish, tv_map_call, tv_distoadd, tv_distoshop
-            , textView24, textView3, textView8;
+            , textView24;
 
     StringRequest stringRequest, stringRequest2;
     RequestQueue requestQueue, requestQueue2;
@@ -91,7 +76,7 @@ public class MapActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.activity_map2);
 
         fragment_choice = new Fragment_choice();
         btn_cancel = findViewById(R.id.btn_cancel);
@@ -110,8 +95,6 @@ public class MapActivity extends AppCompatActivity {
         tv_distoadd = findViewById(R.id.tv_distoadd);
         tv_distoshop = findViewById(R.id.tv_distoshop);
         textView24 = findViewById(R.id.textView24);
-        textView3 = findViewById(R.id.textView3);
-        textView8 = findViewById(R.id.textView8);
 
         bv = (BottomNavigationView) findViewById(R.id.menu_new);
         bv2 = (BottomNavigationView) findViewById(R.id.menu_choice);
@@ -170,7 +153,7 @@ public class MapActivity extends AppCompatActivity {
 
                     tv_address2.setText(deliveryVO.getDl_address());
 
-                    tMapView = new TMapView(MapActivity.this);
+                    tMapView = new TMapView(MapActivity2.this);
                     tMapView.setSKTMapApiKey("l7xxa613be7f03824d6db3a06668a8760374");
 
                     mapMarkerItem1 = new TMapMarkerItem();
@@ -186,9 +169,9 @@ public class MapActivity extends AppCompatActivity {
                     Log.v("soo3",tMapPoint2+"");
                     Log.v("soo3",tMapPoint3+"");
 
-                    bitmap1 = BitmapFactory.decodeResource(MapActivity.this.getResources(),R.drawable.poi_star);
-                    bitmap2 = BitmapFactory.decodeResource(MapActivity.this.getResources(),R.drawable.poi_star1);
-                    bitmap3 = BitmapFactory.decodeResource(MapActivity.this.getResources(),R.drawable.poi_star2);
+                    bitmap1 = BitmapFactory.decodeResource(MapActivity2.this.getResources(),R.drawable.poi_star);
+                    bitmap2 = BitmapFactory.decodeResource(MapActivity2.this.getResources(),R.drawable.poi_star1);
+                    bitmap3 = BitmapFactory.decodeResource(MapActivity2.this.getResources(),R.drawable.poi_star2);
 
                     mapMarkerItem1.setIcon(bitmap1);
                     mapMarkerItem1.setPosition(0.5f,1.0f);
@@ -264,42 +247,6 @@ public class MapActivity extends AppCompatActivity {
                     });
                     tMapView.MapZoomOut();
 
-
-
-                    btn_tmap.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            new AlertDialog.Builder(MapActivity.this)
-                                    .setTitle("경로안내").setMessage("경로안내를 시작하시겠습니까?").setIcon(R.drawable.logo2).setPositiveButton("안내시작", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    TMapTapi tMapTapi = new TMapTapi(MapActivity.this);
-                                    HashMap pathInfo = new HashMap();
-
-                                    // 목적지
-                                    pathInfo.put("rGoName", tv_address2.getText().toString());
-                                    pathInfo.put("rGoX",dl_c_longi);
-                                    pathInfo.put("rGoY", dl_c_lati);
-
-                                    // 출발지 (현위치)
-                                    pathInfo.put("rStName", deliveryVO.getDl_location());
-                                    pathInfo.put("rStX", dl_r_longi);
-                                    pathInfo.put("rStY", dl_r_lati);
-
-                                    // 경유지
-                                    pathInfo.put("rV1Name", deliveryVO.getDl_shop());
-                                    pathInfo.put("rV1X", dl_s_longi);
-                                    pathInfo.put("rV1Y", dl_s_lati);
-
-                                    Log.v("soo5",dl_c_longi+"");
-
-                                    tMapTapi.invokeRoute(pathInfo);
-                                }
-                            }).setNegativeButton("취소",null).show();
-
-                        }
-                    });
-
                     tMapView.setCenterPoint(Double.parseDouble(dl_r_longi),Double.parseDouble(dl_r_lati));
                     tMapView.setZoomLevel(14);
                     linearLayoutTmap.addView(tMapView);
@@ -342,14 +289,14 @@ public class MapActivity extends AppCompatActivity {
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MapActivity.this,MainActivity.class);
+                Intent intent = new Intent(MapActivity2.this,MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
 
-        // 신규상태 -> 배정상태로 업데이트 통신
-        String statusUrl = "http://222.102.104.230:8081/threego/choiceUpdate.do";
+        // 배정상태 -> 완료상태로 업데이트 통신
+        String statusUrl = "http://222.102.104.230:8081/threego/finishUpdate.do";
         requestQueue2 = Volley.newRequestQueue(getApplicationContext());
 
         stringRequest2 = new StringRequest(Request.Method.POST, statusUrl, new Response.Listener<String>() {
@@ -374,13 +321,21 @@ public class MapActivity extends AppCompatActivity {
                 return temp;
             }
         };
-
-
+        
+        
+        // 배달완료 선택
+        btn_tmap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestQueue2.add(stringRequest2);
+            }
+        });
+        
         // 가게에 보낼 메시지 선택 listView
         btn_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(MapActivity.this).setTitle("배정선택").setMessage("배정 하시겠습니까?").setIcon(R.drawable.logo2).setPositiveButton("픽업시작", new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(MapActivity2.this).setTitle("배정선택").setMessage("배정 하시겠습니까?").setIcon(R.drawable.logo2).setPositiveButton("픽업시작", new DialogInterface.OnClickListener() {
                     @SuppressLint("IntentReset")
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -403,8 +358,6 @@ public class MapActivity extends AppCompatActivity {
                             tv_distoshop.setVisibility(View.INVISIBLE);
                             tv_map_shop.setVisibility(View.INVISIBLE);
                             textView24.setVisibility(View.INVISIBLE);
-                            textView3.setVisibility(View.INVISIBLE);
-                            textView8.setVisibility(View.INVISIBLE);
 
                             listView.setVisibility(View.VISIBLE);
 

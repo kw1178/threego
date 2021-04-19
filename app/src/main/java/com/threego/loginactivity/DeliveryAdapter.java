@@ -72,6 +72,7 @@ public class DeliveryAdapter extends BaseAdapter {
         holder.tv_hometime.setText(data.get(position).getDl_dltime());
         holder.tv_shoptime.setText(data.get(position).getDl_cooktime());
         holder.tv_shoplocation.setText(data.get(position).getDl_s_lati()+""+data.get(position).getDl_s_longi());
+        // 가게 주소 DB값 필요!
 
         return convertView;
     }

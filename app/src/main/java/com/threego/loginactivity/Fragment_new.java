@@ -104,7 +104,7 @@ public class Fragment_new extends Fragment {
         requestQueue.add(stringRequest);
 
 
-        // 리스트 선택 시 MapActivity로 넘어가기, startActivityForResult 필요함
+        // 리스트 선택 시 MapActivity로 넘어가기
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

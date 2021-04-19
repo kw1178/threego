@@ -101,6 +101,19 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
+            android:id="@+id/tv_map_foodfinish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10분 후 조리완료"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_map_food"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.429"
+            app:layout_constraintStart_toEndOf="@+id/tv_map_food"
+            app:layout_constraintTop_toTopOf="@+id/tv_map_food"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -138,7 +151,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="배정"
+            android:text="배달시작"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
             app:layout_constraintHorizontal_bias="0.5"
@@ -161,7 +174,7 @@
             android:id="@+id/btn_tmap"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="경로안내"
+            android:text="음식도착"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_cancel"
             app:layout_constraintEnd_toEndOf="parent"
@@ -178,6 +191,31 @@
             android:text="300m"
             app:layout_constraintStart_toEndOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/tv_distoadd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="2km"
+            app:layout_constraintBottom_toBottomOf="@+id/textView8"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toTopOf="@+id/textView8"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginBottom="16dp"
+            android:text="가게 >> 고객 "
+            app:layout_constraintBottom_toTopOf="@+id/guideline25"
+            app:layout_constraintStart_toEndOf="@+id/tv_distoshop"
+            app:layout_constraintTop_toTopOf="@+id/tv_distoshop"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ListView
             android:id="@+id/listview"
@@ -198,44 +236,6 @@
             app:layout_constraintStart_toStartOf="@+id/textView24"
             app:layout_constraintTop_toBottomOf="@+id/textView24"
             app:layout_constraintVertical_bias="0.23" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginBottom="16dp"
-            android:text="가게 >> 고객 "
-            app:layout_constraintBottom_toTopOf="@+id/guideline25"
-            app:layout_constraintStart_toEndOf="@+id/tv_distoshop"
-            app:layout_constraintTop_toTopOf="@+id/tv_distoshop"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/tv_distoadd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:text="2km"
-            app:layout_constraintBottom_toBottomOf="@+id/textView8"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toTopOf="@+id/textView8"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/tv_map_foodfinish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10분 후 조리완료"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_map_food"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.413"
-            app:layout_constraintStart_toEndOf="@+id/tv_map_food"
-            app:layout_constraintTop_toTopOf="@+id/tv_map_food"
-            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

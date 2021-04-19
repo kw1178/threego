@@ -75,13 +75,21 @@ public class MainActivity extends AppCompatActivity {
         tv_choice = findViewById(R.id.tv_choice2);
         tv_ok = findViewById(R.id.tv_ok2);
 
+        tv_count_new.setText("0");
+
+        tv_count_choice.setText("0");
+
+        tv_count_ok.setText("0");
+
         // 네비게이션 카운트
         String url ="http://222.102.104.230:8081/threego/deliveryAll.do";
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
                 try {
+
                     jarr = new JSONArray(response);
                     for (int i=0,j=jarr.length();i<j;i++){
                         tv_count_new.setText(jarr.length()+"");
@@ -106,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
                 return temp;
             }
         };
-        requestQueue.add(stringRequest);
+
+
 
         requestQueue2 = Volley.newRequestQueue(getApplicationContext());
         stringRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -115,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     jarr = new JSONArray(response);
                     for (int i=0,j=jarr.length();i<j;i++){
+
                         tv_count_choice.setText(jarr.length()+"");
                     }
 
@@ -137,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 return temp;
             }
         };
-        requestQueue2.add(stringRequest2);
+
 
 
         requestQueue3 = Volley.newRequestQueue(getApplicationContext());
@@ -147,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     jarr = new JSONArray(response);
                     for (int i=0,j=jarr.length();i<j;i++){
+
                         tv_count_ok.setText(jarr.length()+"");
                     }
 
@@ -169,9 +180,6 @@ public class MainActivity extends AppCompatActivity {
                 return temp;
             }
         };
-        requestQueue3.add(stringRequest3);
-
-
 
 
 
@@ -231,14 +239,18 @@ public class MainActivity extends AppCompatActivity {
         bv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                 switch (item.getItemId()){
                     case R.id.menu_new:
+                        requestQueue.add(stringRequest);
                         getSupportFragmentManager().beginTransaction().replace(R.id.list, fragment_new).commit();
                         break;
                     case R.id.menu_choice:
+                        requestQueue2.add(stringRequest2);
                         getSupportFragmentManager().beginTransaction().replace(R.id.list, fragment_choice).commit();
                         break;
                     case R.id.menu_ok:
+                        requestQueue3.add(stringRequest3);
                         getSupportFragmentManager().beginTransaction().replace(R.id.list, fragment_ok).commit();
                         break;
                 }

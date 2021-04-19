@@ -19,13 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoginActivity"
         tools:targetApi="n">
-        <activity android:name=".ReviewActivity"></activity>
         <activity android:name=".MypageActivity"></activity>
         <activity android:name=".MoneyActivity"></activity>
         <activity android:name=".ListActivity" />
         <activity android:name=".AdActivity" />
         <activity android:name=".NoticeActivity" />
         <activity android:name=".MapActivity"></activity>
+        <activity android:name=".MapActivity2"></activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".JoinActivity" />
         <activity android:name=".LoginActivity">
