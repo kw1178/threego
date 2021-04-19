@@ -6,10 +6,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.view.View;
-import android.view.textclassifier.ConversationActions;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -19,23 +17,17 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import static androidx.core.view.GravityCompat.START;
 
@@ -164,7 +156,7 @@ public class MypageActivity extends AppCompatActivity {
 
                         JSONObject jobj = r_jarr.getJSONObject(i);
 
-                        ReviewVO reviewVO = new ReviewVO();
+                        RatingsVO ratingsVO = new RatingsVO();
 
                         // ArrayAdapter 를 한줄에 보여주기 위한 것
                         review.add("\t"+"\t"+"\t"+"\t"+jobj.getString("ra_reviewnum")+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+jobj.getString("dl_number")+"\t"+"\t"+"\t"+"\t"+jobj.getString("ra_evals"));
@@ -172,8 +164,8 @@ public class MypageActivity extends AppCompatActivity {
                         Log.v("changsoo", review+"");
 
                         // 별점 평균 구하기  result[3] = ra_rating
-                        reviewVO.setRa_rating(jobj.getInt("ra_rating"));
-                        result[3] = reviewVO.getRa_rating();
+                        ratingsVO.setRa_rating(jobj.getInt("ra_rating"));
+                        result[3] = ratingsVO.getRa_rating();
                         sum += result[3];
                         Log.v("changsoo", sum+""); // 확인용
                         avg = (float) sum/j;

@@ -198,8 +198,8 @@ public class ListActivity extends AppCompatActivity {
                         deliveryVO.setDl_call(jobj.getInt("dl_call"));
 
                         sum += deliveryVO.getDl_call();
-                        tv_all.setText(sum+"원");
                     }
+                    tv_all.setText(sum+"원");
                 }catch (Exception e){
 
                 }

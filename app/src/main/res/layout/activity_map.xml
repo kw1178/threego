@@ -22,11 +22,12 @@
 
         <LinearLayout
             android:id="@+id/linearLayoutTmap"
-            android:layout_width="match_parent"
+            android:layout_width="460dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
         </LinearLayout>
+
     </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -181,7 +182,7 @@
             app:layout_constraintTop_toTopOf="@+id/btn_cancel" />
 
         <TextView
-            android:id="@+id/textView28"
+            android:id="@+id/tv_distoshop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
@@ -192,16 +193,26 @@
             app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
         <TextView
-            android:id="@+id/textView29"
+            android:id="@+id/tv_distoadd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="116dp"
             android:layout_marginLeft="116dp"
             android:text="가게 >> 고객 2km"
-            app:layout_constraintBottom_toBottomOf="@+id/textView28"
-            app:layout_constraintStart_toEndOf="@+id/textView28"
-            app:layout_constraintTop_toTopOf="@+id/textView28"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_distoshop"
+            app:layout_constraintStart_toEndOf="@+id/tv_distoshop"
+            app:layout_constraintTop_toTopOf="@+id/tv_distoshop"
             app:layout_constraintVertical_bias="0.0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-13dp"
+            tools:layout_editor_absoluteY="-80dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

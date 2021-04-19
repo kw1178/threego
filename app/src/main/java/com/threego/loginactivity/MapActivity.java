@@ -1,22 +1,37 @@
 package com.threego.loginactivity;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.service.restrictions.RestrictionsReceiver;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -43,29 +58,36 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 public class MapActivity extends AppCompatActivity {
     Button btn_cancel, btn_tmap, btn_select;
     BottomNavigationView bv, bv2;
-    TextView tv_new, tv_address2, tv_map_shop, tv_map_food, tv_map_foodfinish, tv_map_call;
+    TextView tv_new, tv_address2, tv_map_shop, tv_map_food, tv_map_foodfinish, tv_map_call, tv_distoadd, tv_distoshop
+            , textView24;
 
-    StringRequest stringRequest;
-    RequestQueue requestQueue;
+    StringRequest stringRequest, stringRequest2;
+    RequestQueue requestQueue, requestQueue2;
 
     JSONArray jarr;
     LinearLayout linearLayoutTmap;
     TMapView tMapView;
     TMapMarkerItem mapMarkerItem1, mapMarkerItem2, mapMarkerItem3;
     Bitmap bitmap1, bitmap2, bitmap3;
-    TMapPoint tMapPoint1, tMapPoint2, tMapPoint3, tStart, tEnd;
+    TMapPoint tMapPoint1, tMapPoint2, tMapPoint3;
     ArrayList<TMapPoint> alTMapPoint = new ArrayList<TMapPoint>();
     TMapCircle tMapCircle;
     Fragment_choice fragment_choice;
     FrameLayout list;
 
     String dl_r_longi, dl_r_lati, dl_c_longi, dl_c_lati, dl_s_longi, dl_s_lati;
+
+    //ArrayList<String> dialog = new ArrayList<>();
+    ListView listView;
+
+    Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,10 +108,17 @@ public class MapActivity extends AppCompatActivity {
         tv_map_foodfinish = findViewById(R.id.tv_map_foodfinish);
         tv_map_food = findViewById(R.id.tv_map_food);
         tv_map_call = findViewById(R.id.tv_map_call);
+        tv_distoadd = findViewById(R.id.tv_distoadd);
+        tv_distoshop = findViewById(R.id.tv_distoshop);
+        textView24 = findViewById(R.id.textView24);
 
         bv = (BottomNavigationView) findViewById(R.id.menu_new);
         bv2 = (BottomNavigationView) findViewById(R.id.menu_choice);
         linearLayoutTmap = findViewById(R.id.linearLayoutTmap);
+
+        listView = findViewById(R.id.listview);
+        listView.setVisibility(View.INVISIBLE);
+
 
         // 통신
         String url = "http://222.102.104.230:8081/threego/location.do";
@@ -118,6 +147,8 @@ public class MapActivity extends AppCompatActivity {
                     deliveryVO.setDl_shop(jobj.getString("dl_shop"));
                     deliveryVO.setDl_food(jobj.getString("dl_food"));
                     deliveryVO.setDl_cooktime(jobj.getString("dl_cooktime"));
+                    deliveryVO.setDl_distoadd(jobj.getString("dl_distoadd"));
+                    deliveryVO.setDl_distoshop(jobj.getString("dl_distoshop"));
 
                     Log.v("soo",deliveryVO.getDl_c_longi()+"");
                     tv_map_call.setText(deliveryVO.getDl_call()+"");
@@ -125,6 +156,8 @@ public class MapActivity extends AppCompatActivity {
                     tv_map_food.setText(deliveryVO.getDl_food());
                     tv_map_foodfinish.setText(deliveryVO.getDl_cooktime());
                     tv_map_shop.setText(deliveryVO.getDl_shop());
+                    tv_distoadd.setText(deliveryVO.getDl_distoadd());
+                    tv_distoshop.setText(deliveryVO.getDl_distoshop());
 
                     dl_c_lati = deliveryVO.getDl_c_lati();
                     dl_c_longi = deliveryVO.getDl_c_longi();
@@ -301,6 +334,9 @@ public class MapActivity extends AppCompatActivity {
 
 
 
+
+
+
         // 버튼 누르면 각각 이동하기
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -311,13 +347,89 @@ public class MapActivity extends AppCompatActivity {
             }
         });
 
+        // 신규상태 -> 배정상태로 업데이트 통신
+        String statusUrl = "http://222.102.104.230:8081/threego/statusupdate.do";
+        requestQueue2 = Volley.newRequestQueue(getApplicationContext());
+
+        stringRequest2 = new StringRequest(Request.Method.POST, statusUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> temp = new HashMap<>();
+                Intent intent1 = getIntent();
+                int dl_number1 = intent1.getExtras().getInt("dl_number");
+
+                temp.put("dl_number", dl_number1+"");
+                return temp;
+            }
+        };
+
+
+        // 가게에 보낼 메시지 선택 listView
         btn_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               getSupportFragmentManager().beginTransaction().replace(R.id.list,fragment_choice).commit();
+                new AlertDialog.Builder(MapActivity.this).setTitle("배정선택").setMessage("배정 하시겠습니까?").setIcon(R.drawable.logo2).setPositiveButton("픽업시작", new DialogInterface.OnClickListener() {
+                    @SuppressLint("IntentReset")
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ArrayList<String> dialog1 = new ArrayList<>();
+                        dialog1.add("10분 뒤 도착예정입니다.");
+                        dialog1.add("가는 중");
+                        dialog1.add("준비해라");
+                        dialog1.add("배달잡았다.");
+                        dialog1.add("내가 1등임 ㅇㅇ");
+                        dialog1.add("권우형아 멋져");
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(),R.layout.dialog_list, dialog1);
+                        listView.setAdapter(adapter);
+
+                        try {
+                            tv_map_call.setVisibility(View.INVISIBLE);
+                            tv_map_food.setVisibility(View.INVISIBLE);
+                            tv_map_foodfinish.setVisibility(View.INVISIBLE);
+                            tv_distoadd.setVisibility(View.INVISIBLE);
+                            tv_distoshop.setVisibility(View.INVISIBLE);
+                            tv_map_shop.setVisibility(View.INVISIBLE);
+                            textView24.setVisibility(View.INVISIBLE);
+
+                            listView.setVisibility(View.VISIBLE);
+
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                    Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.parse("sms:010-4200-5974"));
+                                    intent.putExtra("sms_body",adapter.getItem(position)+"");
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }).setNegativeButton("취소",null).show();
             }
         });
     }
-
 
 }
