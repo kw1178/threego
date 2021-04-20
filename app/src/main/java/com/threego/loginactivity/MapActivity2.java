@@ -51,6 +51,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -86,11 +87,6 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
     ListView listView;
     TMapGpsManager gps;
 
-    String currentPhotoPath;
-    final int TAKE_PICTURE = 1;
-    ImageView img;
-
-    Uri photoURI;
 
     @Override
     public void onLocationChange(Location location) {
@@ -131,7 +127,7 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
         listView = findViewById(R.id.listview);
         listView.setVisibility(View.INVISIBLE);
 
-        img = findViewById(R.id.img);
+
         // 통신
         String url = "http://222.102.104.230:8081/threego/location.do";
 
@@ -364,6 +360,7 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(MapActivity2.this).setTitle("배달시작").setMessage("배달을 시작하시겠습니까?").setIcon(R.drawable.logo2).setPositiveButton("배달시작", new DialogInterface.OnClickListener() {
+                    @SuppressLint("IntentReset")
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -400,41 +397,14 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
                             }
                         };
 
-
                         requestQueue3.add(stringRequest3);
 
 
-
                         // 가게 사장에게 사진 메시지 보내기
-                        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)!=
-                                PackageManager.PERMISSION_GRANTED){
-
-                            ActivityCompat.requestPermissions(MapActivity2.this,
-                                    new String[]{Manifest.permission.CAMERA,
-                                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                            Manifest.permission.READ_EXTERNAL_STORAGE},0);
-                        }
-
-
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        try {
-                            String filename = "JPEG_"+System.currentTimeMillis()+".jpg";
-                            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-                            File imageFile = File.createTempFile(filename,".jpg",storageDir);
-
-                            currentPhotoPath = imageFile.getAbsolutePath(); // 사진파일의 절대경로 저장
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                        // 사진파일에 대한 정보를 Uri로 접근하여 인텐트에 저장
-                        photoURI = FileProvider.getUriForFile(MapActivity2.this,
-                                "com.threego.loginactivity.fileprovider",
-                                new File(currentPhotoPath));
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT,photoURI);
-                        startActivityForResult(intent, TAKE_PICTURE);
-
+                        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("sms:010-4200-5974")); // 고객 전화번호 DB값 필요!
+                        intent.putExtra("sms_body","Hi");
+                        startActivity(intent);
+                        finish();
                     }
                 }).setNegativeButton("취소",null).show();
             }
@@ -466,22 +436,5 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
         });
     } // end
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        // 사진촬영 앱에 대한 요청
-        if (requestCode == TAKE_PICTURE&& resultCode==RESULT_OK){
-
-            // 사진촬영 후 저장된 파일의 경로를 Uri객체로 생성하여 이미지뷰에 적용
-            Uri picturePhotoURI = Uri.fromFile(new File(currentPhotoPath));
-            img.setImageURI(picturePhotoURI);
-            Log.v("ddddddd",picturePhotoURI.toString());
-            Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.parse("sms:010-4200-5974"));
-            intent.putExtra("sms_body","사장님께");
-            intent.putExtra(Intent.EXTRA_STREAM,picturePhotoURI);
-            intent.setType("images/*");
-            startActivity(intent);
-        }
-    }
 }
