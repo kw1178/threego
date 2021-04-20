@@ -1,20 +1,26 @@
 package com.threego.loginactivity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,6 +28,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -33,28 +41,29 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.skt.Tmap.TMapCircle;
 import com.skt.Tmap.TMapData;
+import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapMarkerItem;
 import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapPolyLine;
-import com.skt.Tmap.TMapTapi;
 import com.skt.Tmap.TMapView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class MapActivity2 extends AppCompatActivity {
-    Button btn_cancel, btn_tmap, btn_select;
+public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
+    Button btn_cancel, btn_finish, btn_start;
     BottomNavigationView bv, bv2;
     TextView tv_new, tv_address2, tv_map_shop, tv_map_food, tv_map_foodfinish, tv_map_call, tv_distoadd, tv_distoshop
             , textView24;
 
-    StringRequest stringRequest, stringRequest2;
-    RequestQueue requestQueue, requestQueue2;
+    StringRequest stringRequest, stringRequest2, stringRequest3;
+    RequestQueue requestQueue, requestQueue2, requestQueue3;
 
     JSONArray jarr;
     LinearLayout linearLayoutTmap;
@@ -69,9 +78,28 @@ public class MapActivity2 extends AppCompatActivity {
 
     String dl_r_longi, dl_r_lati, dl_c_longi, dl_c_lati, dl_s_longi, dl_s_lati;
 
+    Double r_lati, r_longi;
+
+    DeliveryVO  deliveryVO;
+
     //ArrayList<String> dialog = new ArrayList<>();
     ListView listView;
+    TMapGpsManager gps;
 
+    String currentPhotoPath;
+    final int TAKE_PICTURE = 1;
+    ImageView img;
+
+    Uri photoURI;
+
+    @Override
+    public void onLocationChange(Location location) {
+       r_lati = location.getLatitude();
+        r_longi = location.getLongitude();
+
+        deliveryVO.setDl_r_lati(r_lati+"");
+        deliveryVO.setDl_r_longi(r_longi+"");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +108,8 @@ public class MapActivity2 extends AppCompatActivity {
 
         fragment_choice = new Fragment_choice();
         btn_cancel = findViewById(R.id.btn_cancel);
-        btn_tmap = findViewById(R.id.btn_tmap);
-        btn_select = findViewById(R.id.btn_select);
+        btn_finish = findViewById(R.id.btn_finish);
+        btn_start = findViewById(R.id.btn_start);
 
         list = findViewById(R.id.list);
 
@@ -103,7 +131,7 @@ public class MapActivity2 extends AppCompatActivity {
         listView = findViewById(R.id.listview);
         listView.setVisibility(View.INVISIBLE);
 
-
+        img = findViewById(R.id.img);
         // 통신
         String url = "http://222.102.104.230:8081/threego/location.do";
 
@@ -116,7 +144,8 @@ public class MapActivity2 extends AppCompatActivity {
                     jarr = new JSONArray(response);
                 for (int i=0,j=jarr.length(); i<j; i++){
                     JSONObject jobj = jarr.getJSONObject(i);
-                  DeliveryVO  deliveryVO = new DeliveryVO();
+
+                    deliveryVO = new DeliveryVO();
 
                     deliveryVO.setDl_r_lati(jobj.getString("dl_r_lati"));
                     deliveryVO.setDl_r_longi(jobj.getString("dl_r_longi"));
@@ -133,6 +162,7 @@ public class MapActivity2 extends AppCompatActivity {
                     deliveryVO.setDl_cooktime(jobj.getString("dl_cooktime"));
                     deliveryVO.setDl_distoadd(jobj.getString("dl_distoadd"));
                     deliveryVO.setDl_distoshop(jobj.getString("dl_distoshop"));
+                    deliveryVO.setR_id(jobj.getString("r_id"));
 
                     Log.v("soo",deliveryVO.getDl_c_longi()+"");
                     tv_map_call.setText(deliveryVO.getDl_call()+"");
@@ -281,20 +311,6 @@ public class MapActivity2 extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
 
-
-
-
-
-        // 버튼 누르면 각각 이동하기
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MapActivity2.this,MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
         // 배정상태 -> 완료상태로 업데이트 통신
         String statusUrl = "http://222.102.104.230:8081/threego/finishUpdate.do";
         requestQueue2 = Volley.newRequestQueue(getApplicationContext());
@@ -303,6 +319,7 @@ public class MapActivity2 extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(),"업데이트 성공!", Toast.LENGTH_LONG).show();
+                onBackPressed();    // 뒤로 가기
             }
         }, new Response.ErrorListener() {
             @Override
@@ -321,65 +338,150 @@ public class MapActivity2 extends AppCompatActivity {
                 return temp;
             }
         };
-        
-        
-        // 배달완료 선택
-        btn_tmap.setOnClickListener(new View.OnClickListener() {
+
+        // 라이더 좌표값 통신 보내기
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1); //위치권한 탐색 허용 관련 내용
+        }
+        gps = new TMapGpsManager(MapActivity2.this);
+        gps.setMinTime(1000);
+        gps.setMinDistance(5);
+        gps.setProvider(gps.NETWORK_PROVIDER);
+        gps.OpenGps();
+        r_longi = gps.getLocation().getLongitude();
+        r_lati = gps.getLocation().getLatitude();
+
+        // 버튼 누르면 각각 이동하기
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestQueue2.add(stringRequest2);
+                onBackPressed();
             }
         });
-        
-        // 가게에 보낼 메시지 선택 listView
-        btn_select.setOnClickListener(new View.OnClickListener() {
+
+        // 배달시작 선택
+        btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(MapActivity2.this).setTitle("배정선택").setMessage("배정 하시겠습니까?").setIcon(R.drawable.logo2).setPositiveButton("픽업시작", new DialogInterface.OnClickListener() {
-                    @SuppressLint("IntentReset")
+                new AlertDialog.Builder(MapActivity2.this).setTitle("배달시작").setMessage("배달을 시작하시겠습니까?").setIcon(R.drawable.logo2).setPositiveButton("배달시작", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        ArrayList<String> dialog1 = new ArrayList<>();
-                        dialog1.add("10분 뒤 도착예정입니다.");
-                        dialog1.add("가는 중");
-                        dialog1.add("준비해라");
-                        dialog1.add("배달잡았다.");
-                        dialog1.add("내가 1등임 ㅇㅇ");
 
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(),R.layout.dialog_list, dialog1);
-                        listView.setAdapter(adapter);
+                        String URL = "http://222.102.104.230:8081/threego/riderUpdate.do";
 
+                        requestQueue3 = Volley.newRequestQueue(getApplicationContext());
+                        stringRequest3 = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(getApplicationContext(),"업데이트 성공", Toast.LENGTH_SHORT).show();
+                                onBackPressed();
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+                        }) {
+                            @Nullable
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String, String> temp = new HashMap<>();
+
+                                String r_id = deliveryVO.getR_id();
+                                Log.v("r_id", r_id + "");
+                                temp.put("r_id", r_id);
+                                temp.put("r_lati", r_lati + "");
+                                temp.put("r_longi", r_longi + "");
+
+                                Log.v("r_id", r_lati + "");
+                                Log.v("r_id", r_longi + "");
+                                return temp;
+                            }
+                        };
+
+
+                        requestQueue3.add(stringRequest3);
+
+
+
+                        // 가게 사장에게 사진 메시지 보내기
+                        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)!=
+                                PackageManager.PERMISSION_GRANTED){
+
+                            ActivityCompat.requestPermissions(MapActivity2.this,
+                                    new String[]{Manifest.permission.CAMERA,
+                                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                            Manifest.permission.READ_EXTERNAL_STORAGE},0);
+                        }
+
+
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         try {
-                            tv_map_call.setVisibility(View.INVISIBLE);
-                            tv_map_food.setVisibility(View.INVISIBLE);
-                            tv_map_foodfinish.setVisibility(View.INVISIBLE);
-                            tv_distoadd.setVisibility(View.INVISIBLE);
-                            tv_distoshop.setVisibility(View.INVISIBLE);
-                            tv_map_shop.setVisibility(View.INVISIBLE);
-                            textView24.setVisibility(View.INVISIBLE);
+                            String filename = "JPEG_"+System.currentTimeMillis()+".jpg";
+                            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                            File imageFile = File.createTempFile(filename,".jpg",storageDir);
 
-                            listView.setVisibility(View.VISIBLE);
+                            currentPhotoPath = imageFile.getAbsolutePath(); // 사진파일의 절대경로 저장
 
-                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    requestQueue2.add(stringRequest2);
-
-                                    Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.parse("sms:010-4200-5974")); // 고객 전화번호 DB값 필요!
-                                    intent.putExtra("sms_body",adapter.getItem(position)+"");
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            });
-
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
+
+                        // 사진파일에 대한 정보를 Uri로 접근하여 인텐트에 저장
+                        photoURI = FileProvider.getUriForFile(MapActivity2.this,
+                                "com.threego.loginactivity.fileprovider",
+                                new File(currentPhotoPath));
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT,photoURI);
+                        startActivityForResult(intent, TAKE_PICTURE);
+
                     }
                 }).setNegativeButton("취소",null).show();
             }
         });
-    }
 
+
+        // 배달완료 선택
+        btn_finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(MapActivity2.this).setTitle("배달완료").setMessage("배달을 완료하시겠습니까?").setIcon(R.drawable.logo2).setPositiveButton("배달완료", new DialogInterface.OnClickListener() {
+                    @SuppressLint("IntentReset")
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        requestQueue2.add(stringRequest2);
+
+                        // 보낼 주소
+                        String url = "라이더의 평가를 해주세요."+System.getProperty("line.separator")
+                                +"http://";
+
+                        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("sms:010-4200-5974")); // 고객 전화번호 DB값 필요!
+                        intent.putExtra("sms_body",url);
+                        startActivity(intent);
+                        finish();
+                    }
+                }).setNegativeButton("취소",null).show();
+            }
+        });
+    } // end
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // 사진촬영 앱에 대한 요청
+        if (requestCode == TAKE_PICTURE&& resultCode==RESULT_OK){
+
+            // 사진촬영 후 저장된 파일의 경로를 Uri객체로 생성하여 이미지뷰에 적용
+            Uri picturePhotoURI = Uri.fromFile(new File(currentPhotoPath));
+            img.setImageURI(picturePhotoURI);
+            Log.v("ddddddd",picturePhotoURI.toString());
+            Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.parse("sms:010-4200-5974"));
+            intent.putExtra("sms_body","사장님께");
+            intent.putExtra(Intent.EXTRA_STREAM,picturePhotoURI);
+            intent.setType("images/*");
+            startActivity(intent);
+        }
+    }
 }

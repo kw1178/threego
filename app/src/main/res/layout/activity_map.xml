@@ -134,7 +134,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
         <Button
-            android:id="@+id/btn_select"
+            android:id="@+id/btn_start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -151,14 +151,14 @@
             android:layout_height="wrap_content"
             android:text="취소"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_select"
-            app:layout_constraintEnd_toStartOf="@+id/btn_tmap"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_start"
+            app:layout_constraintEnd_toStartOf="@+id/btn_finish"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_select"
-            app:layout_constraintTop_toTopOf="@+id/btn_select" />
+            app:layout_constraintStart_toEndOf="@+id/btn_start"
+            app:layout_constraintTop_toTopOf="@+id/btn_start" />
 
         <Button
-            android:id="@+id/btn_tmap"
+            android:id="@+id/btn_finish"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="경로안내"

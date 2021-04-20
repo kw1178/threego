@@ -1,24 +1,14 @@
 package com.threego.loginactivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.service.restrictions.RestrictionsReceiver;
-import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,15 +17,11 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -58,7 +44,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -95,8 +80,8 @@ public class MapActivity extends AppCompatActivity {
 
         fragment_choice = new Fragment_choice();
         btn_cancel = findViewById(R.id.btn_cancel);
-        btn_tmap = findViewById(R.id.btn_tmap);
-        btn_select = findViewById(R.id.btn_select);
+        btn_tmap = findViewById(R.id.btn_finish);
+        btn_select = findViewById(R.id.btn_start);
 
         list = findViewById(R.id.list);
 
@@ -342,9 +327,7 @@ public class MapActivity extends AppCompatActivity {
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MapActivity.this,MainActivity.class);
-                startActivity(intent);
-                finish();
+                onBackPressed();
             }
         });
 
@@ -356,6 +339,7 @@ public class MapActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(),"업데이트 성공!", Toast.LENGTH_LONG).show();
+                onBackPressed();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -413,7 +397,7 @@ public class MapActivity extends AppCompatActivity {
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     requestQueue2.add(stringRequest2);
 
-                                    Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.parse("sms:010-4200-5974")); // 고객 전화번호 DB값 필요!
+                                    Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.parse("sms:010-4200-5974")); // 가게사장 전화번호 DB값 필요!
                                     intent.putExtra("sms_body",adapter.getItem(position)+"");
                                     startActivity(intent);
                                     finish();

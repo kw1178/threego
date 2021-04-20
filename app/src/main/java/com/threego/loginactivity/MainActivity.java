@@ -75,11 +75,6 @@ public class MainActivity extends AppCompatActivity {
         tv_choice = findViewById(R.id.tv_choice2);
         tv_ok = findViewById(R.id.tv_ok2);
 
-        tv_count_new.setText("0");
-
-        tv_count_choice.setText("0");
-
-        tv_count_ok.setText("0");
 
         // 네비게이션 카운트
         String url ="http://222.102.104.230:8081/threego/deliveryAll.do";
@@ -239,7 +234,9 @@ public class MainActivity extends AppCompatActivity {
         bv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+                tv_count_new.setText("");
+                tv_count_choice.setText("");
+                tv_count_ok.setText("");
                 switch (item.getItemId()){
                     case R.id.menu_new:
                         requestQueue.add(stringRequest);
