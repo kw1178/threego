@@ -5,7 +5,8 @@
     <item
         android:id="@+id/menu_new"
         android:actionLayout="@layout/fragment_new"
-        android:title="신규" />
+        android:title="신규"
+        android:visible="true" />
     <item
         android:id="@+id/menu_choice"
         android:actionLayout="@layout/fragment_choice"

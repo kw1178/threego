@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E1D1D">
+    android:background="#FFFFFF">
 
     <TextView
         android:id="@+id/tv_shop"
@@ -14,7 +14,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="가게이름"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +25,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:text="(물건가격)"
-        android:textColor="#FFFFFF"
+        android:textColor="#070707"
         app:layout_constraintBottom_toBottomOf="@+id/tv_shop"
         app:layout_constraintStart_toEndOf="@+id/tv_shop"
         app:layout_constraintTop_toTopOf="@+id/tv_shop"
@@ -39,7 +39,7 @@
         android:layout_marginLeft="168dp"
         android:layout_marginTop="16dp"
         android:text="콜비"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/tv_allprice"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="고객주소"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/tv_call"
         app:layout_constraintTop_toBottomOf="@+id/tv_call" />
 
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="가게주소"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/tv_shop"
         app:layout_constraintTop_toBottomOf="@+id/tv_shop" />
 
@@ -71,7 +71,7 @@
         android:layout_marginEnd="168dp"
         android:layout_marginRight="168dp"
         android:text="가게주소-고객주소"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="가게도착시간"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintEnd_toStartOf="@+id/tv_hometime"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tv_shoplocation"
@@ -93,20 +93,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:text="고객도착시간"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/tv_c_address"
         app:layout_constraintTop_toBottomOf="@+id/tv_c_address" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="36dp"
+        android:layout_height="31dp"
         android:layout_marginTop="48dp"
         app:layout_constraintEnd_toStartOf="@+id/tv_c_address"
-        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toEndOf="@+id/tv_shoplocation"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_media_ff" />
+        app:srcCompat="@drawable/fastforward" />
 
     <TextView
         android:id="@+id/tv_food"
@@ -114,7 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="음식명"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/tv_shoplocation"
         app:layout_constraintTop_toBottomOf="@+id/tv_shoplocation" />
 
@@ -122,11 +122,11 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
         android:layout_marginTop="16dp"
-        android:text="(               )원"
-        android:textColor="#FFFFFF"
+        android:text="               원"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/tv_shop"
         app:layout_constraintStart_toEndOf="@+id/tv_shop"
         app:layout_constraintTop_toTopOf="parent"
@@ -138,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="원"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_call"
         app:layout_constraintTop_toTopOf="parent" />
