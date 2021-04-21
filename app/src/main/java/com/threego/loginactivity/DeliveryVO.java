@@ -6,7 +6,8 @@ public class DeliveryVO {
     private int dl_number;  // 주문번호
     private String dl_date; // 날짜
     private String r_id;    // 라이더 id
-    private String dl_location; // 라이더 출발지
+    private String dl_r_location; // 라이더 출발지
+    private String dl_s_location; // 가게 주소
     private String dl_shop; // 가게이름
     private String dl_food; // 음식명
     private int dl_price;   // 음식가격
@@ -23,14 +24,6 @@ public class DeliveryVO {
     private String dl_dltime;   // 배달완료예상시간
     private String dl_c_lati;
     private String dl_c_longi;
-
-    public String getDl_location() {
-        return dl_location;
-    }
-
-    public void setDl_location(String dl_location) {
-        this.dl_location = dl_location;
-    }
 
     public int getDl_number() {
         return dl_number;
@@ -54,6 +47,22 @@ public class DeliveryVO {
 
     public void setR_id(String r_id) {
         this.r_id = r_id;
+    }
+
+    public String getDl_r_location() {
+        return dl_r_location;
+    }
+
+    public void setDl_r_location(String dl_r_location) {
+        this.dl_r_location = dl_r_location;
+    }
+
+    public String getDl_s_location() {
+        return dl_s_location;
+    }
+
+    public void setDl_s_location(String dl_s_location) {
+        this.dl_s_location = dl_s_location;
     }
 
     public String getDl_shop() {
@@ -190,7 +199,8 @@ public class DeliveryVO {
                 "dl_number=" + dl_number +
                 ", dl_date='" + dl_date + '\'' +
                 ", r_id='" + r_id + '\'' +
-                ", dl_location='" + dl_location + '\'' +
+                ", dl_r_location='" + dl_r_location + '\'' +
+                ", dl_s_location='" + dl_s_location + '\'' +
                 ", dl_shop='" + dl_shop + '\'' +
                 ", dl_food='" + dl_food + '\'' +
                 ", dl_price=" + dl_price +

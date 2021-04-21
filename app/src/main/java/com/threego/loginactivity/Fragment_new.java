@@ -1,6 +1,8 @@
 package com.threego.loginactivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,15 +34,19 @@ public class Fragment_new extends Fragment {
     RequestQueue requestQueue;
     StringRequest stringRequest;
     DeliveryAdapter adapter;
-    TextView tv_new2;
+    TextView tv_new2, tv_new3;
     View view;
+    SharedPreferences pref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_new, container, false);
 
+        pref = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+
         tv_new2 = view.findViewById(R.id.tv_new2);
+        tv_new3 = view.findViewById(R.id.tv_new3);
 
         lv = view.findViewById(R.id.list);
 
@@ -71,6 +76,7 @@ public class Fragment_new extends Fragment {
                         deliveryVO.setDl_number(jobj.getInt("dl_number"));
                         deliveryVO.setDl_s_lati(jobj.getString("dl_s_lati"));
                         deliveryVO.setDl_s_longi(jobj.getString("dl_s_longi"));
+                        deliveryVO.setDl_s_location(jobj.getString("dl_s_location"));
 
                         delivery.add(deliveryVO);
 
@@ -94,7 +100,14 @@ public class Fragment_new extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
+
+
+                String r_id = pref.getString("ID", "");
                 temp.put("dl_status",tv_new2.getText().toString());
+                temp.put("r_id",r_id);
+                Log.v("카카카",r_id);
+
+                // 로그인 한 id 포함되야 함
 
                 return temp;
             }

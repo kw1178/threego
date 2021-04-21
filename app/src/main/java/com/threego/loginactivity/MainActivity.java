@@ -1,8 +1,11 @@
 package com.threego.loginactivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -45,11 +48,18 @@ public class MainActivity extends AppCompatActivity {
     StringRequest stringRequest, stringRequest2, stringRequest3;
     JSONArray jarr;
 
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
+
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        editor = pref.edit();
 
         fragment_new = new Fragment_new();
         fragment_choice = new Fragment_choice();
@@ -105,7 +115,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
+                Intent intent = getIntent();
+                String r_id = intent.getExtras().getString("r_id");
                 temp.put("dl_status",tv_new.getText().toString());
+                temp.put("r_id",r_id);
+                editor.putString("ID", r_id);   // fragment로 값 넘겨주기
+                editor.commit();
                 return temp;
             }
         };
@@ -138,7 +153,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
+                Intent intent = getIntent();
+                String r_id = intent.getExtras().getString("r_id");
                 temp.put("dl_status",tv_choice.getText().toString());
+                temp.put("r_id",r_id);
                 return temp;
             }
         };
@@ -171,7 +189,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
+                Intent intent = getIntent();
+              String r_id = intent.getExtras().getString("r_id");
                 temp.put("dl_status",tv_ok.getText().toString());
+                temp.put("r_id",r_id);
+                Log.v("카카",r_id);
                 return temp;
             }
         };
@@ -231,6 +253,8 @@ public class MainActivity extends AppCompatActivity {
 
         bv = findViewById(R.id.bottomNavigationView);
 
+
+
         bv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -241,6 +265,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_new:
                         requestQueue.add(stringRequest);
                         getSupportFragmentManager().beginTransaction().replace(R.id.list, fragment_new).commit();
+
                         break;
                     case R.id.menu_choice:
                         requestQueue2.add(stringRequest2);
