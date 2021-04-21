@@ -129,7 +129,7 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        // 통신
+        // 해당 날짜에 속한 콜비 총합 통신
         String url = "http://222.102.104.230:8081/threego/delivery.do";
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -191,7 +191,7 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        // 콜 리스트 통신
+        // 콜 리스트 전체 총합 통신
         String URL = "http://222.102.104.230:8081/threego/call.do";
         requestQueue2 = Volley.newRequestQueue(getApplicationContext());
         stringRequest2 = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {

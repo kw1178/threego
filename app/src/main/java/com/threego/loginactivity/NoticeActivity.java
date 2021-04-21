@@ -46,7 +46,7 @@ public class NoticeActivity extends AppCompatActivity {
     RequestQueue requestQueue, requestQueue2;
     JSONArray jarr;
     String[] nn;
-    NoticeVO noticeVO;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bv;
     DrawerLayout drawerLayout;
     Button btn_delivery, btn_mypage, btn_ad, btn_money, btn_notice, btn_home;
-    TextView tv_count_new, tv_count_choice, tv_count_ok, tv_new, tv_choice, tv_ok;
+    TextView tv_count_new, tv_count_choice, tv_count_ok, tv_new, tv_choice, tv_ok, tv_rider;
     RequestQueue requestQueue,requestQueue2, requestQueue3;
     StringRequest stringRequest, stringRequest2, stringRequest3;
     JSONArray jarr;
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         tv_choice = findViewById(R.id.tv_choice2);
         tv_ok = findViewById(R.id.tv_ok2);
 
+        tv_rider = findViewById(R.id.tv_rider);
 
         // 네비게이션 카운트
         String url ="http://222.102.104.230:8081/threego/deliveryAll.do";
@@ -265,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
                 tv_count_new.setText("");
                 tv_count_choice.setText("");
                 tv_count_ok.setText("");
+                tv_rider.setText(r_id+"님 환영합니다.");
                 switch (item.getItemId()){
                     case R.id.menu_new:
                         requestQueue.add(stringRequest);
@@ -292,6 +294,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(START);
+                tv_rider.setText(r_id+"님 환영합니다.");
             }
         });
 
