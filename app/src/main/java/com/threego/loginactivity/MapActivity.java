@@ -128,7 +128,7 @@ public class MapActivity extends AppCompatActivity {
                     deliveryVO.setDl_s_longi(jobj.getString("dl_s_longi"));
                     deliveryVO.setDl_address(jobj.getString("dl_address"));
                     deliveryVO.setDl_shop(jobj.getString("dl_shop"));
-                    deliveryVO.setDl_location(jobj.getString("dl_location"));
+                    deliveryVO.setDl_r_location(jobj.getString("dl_r_location"));
                     deliveryVO.setDl_call(jobj.getInt("dl_call"));
                     deliveryVO.setDl_shop(jobj.getString("dl_shop"));
                     deliveryVO.setDl_food(jobj.getString("dl_food"));
@@ -179,7 +179,7 @@ public class MapActivity extends AppCompatActivity {
                     mapMarkerItem1.setPosition(0.5f,1.0f);
                     mapMarkerItem1.setTMapPoint(tMapPoint1);
                     mapMarkerItem1.setCanShowCallout(true);
-                    mapMarkerItem1.setCalloutTitle(deliveryVO.getDl_location()); // 출발지
+                    mapMarkerItem1.setCalloutTitle(deliveryVO.getDl_r_location()); // 출발지
                     tMapView.addMarkerItem("mapMarkerItem1",mapMarkerItem1);
 
                     mapMarkerItem2.setIcon(bitmap2);
@@ -267,7 +267,7 @@ public class MapActivity extends AppCompatActivity {
                                     pathInfo.put("rGoY", dl_c_lati);
 
                                     // 출발지 (현위치)
-                                    pathInfo.put("rStName", deliveryVO.getDl_location());
+                                    pathInfo.put("rStName", deliveryVO.getDl_r_location());
                                     pathInfo.put("rStX", dl_r_longi);
                                     pathInfo.put("rStY", dl_r_lati);
 

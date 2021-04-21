@@ -1,6 +1,8 @@
 package com.threego.loginactivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,6 +39,7 @@ public class Fragment_choice extends Fragment {
     DeliveryAdapter adapter;
     TextView tv_choice;
     View view;
+    SharedPreferences pref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +48,7 @@ public class Fragment_choice extends Fragment {
 
         tv_choice = view.findViewById(R.id.tv_choice2);
         lv = view.findViewById(R.id.list_choice);
-
+        pref = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         delivery.clear();
         requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
         jsonParse();
@@ -96,6 +99,7 @@ public class Fragment_choice extends Fragment {
                         deliveryVO.setDl_number(jobj.getInt("dl_number"));
                         deliveryVO.setDl_s_lati(jobj.getString("dl_s_lati"));
                         deliveryVO.setDl_s_longi(jobj.getString("dl_s_longi"));
+                        deliveryVO.setDl_s_location(jobj.getString("dl_s_location"));
 
                         delivery.add(deliveryVO);
 
@@ -118,8 +122,9 @@ public class Fragment_choice extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
+                String r_id = pref.getString("ID", "");
                 temp.put("dl_status",tv_choice.getText().toString());
-
+                temp.put("r_id",r_id);
                 return temp;
             }
         };

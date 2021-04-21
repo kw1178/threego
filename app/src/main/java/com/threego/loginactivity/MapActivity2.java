@@ -151,7 +151,7 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
                     deliveryVO.setDl_s_longi(jobj.getString("dl_s_longi"));
                     deliveryVO.setDl_address(jobj.getString("dl_address"));
                     deliveryVO.setDl_shop(jobj.getString("dl_shop"));
-                    deliveryVO.setDl_location(jobj.getString("dl_location"));
+                    deliveryVO.setDl_r_location(jobj.getString("dl_r_location"));
                     deliveryVO.setDl_call(jobj.getInt("dl_call"));
                     deliveryVO.setDl_shop(jobj.getString("dl_shop"));
                     deliveryVO.setDl_food(jobj.getString("dl_food"));
@@ -203,7 +203,7 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
                     mapMarkerItem1.setPosition(0.5f,1.0f);
                     mapMarkerItem1.setTMapPoint(tMapPoint1);
                     mapMarkerItem1.setCanShowCallout(true);
-                    mapMarkerItem1.setCalloutTitle(deliveryVO.getDl_location()); // 출발지
+                    mapMarkerItem1.setCalloutTitle(deliveryVO.getDl_r_location()); // 출발지
                     tMapView.addMarkerItem("mapMarkerItem1",mapMarkerItem1);
 
                     mapMarkerItem2.setIcon(bitmap2);
@@ -404,7 +404,6 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
                         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("sms:010-4200-5974")); // 고객 전화번호 DB값 필요!
                         intent.putExtra("sms_body","Hi");
                         startActivity(intent);
-                        finish();
                     }
                 }).setNegativeButton("취소",null).show();
             }
