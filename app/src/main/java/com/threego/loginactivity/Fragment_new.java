@@ -113,6 +113,7 @@ public class Fragment_new extends Fragment {
                         // fragment에서는 this 대신 getActivity 를 사용한다.
                         Intent intent = new Intent(getActivity(), MapActivity.class);
                         intent.putExtra("dl_number",delivery.get(i).getDl_number());
+                        intent.putExtra("r_id",delivery.get(i).getR_id());
                         startActivity(intent);
                     }
 
