@@ -345,7 +345,7 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-<!---->
+
     <include layout="@layout/main_navi"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:layout_constraintLeft_toLeftOf="parent"

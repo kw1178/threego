@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
-
+    String r_id;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
                 Intent intent = getIntent();
-                String r_id = intent.getExtras().getString("r_id");
+                r_id = intent.getExtras().getString("r_id");
                 temp.put("dl_status",tv_new.getText().toString());
                 temp.put("r_id",r_id);
                 editor.putString("ID", r_id);   // fragment로 값 넘겨주기
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
                 Intent intent = getIntent();
-                String r_id = intent.getExtras().getString("r_id");
+                r_id = intent.getExtras().getString("r_id");
                 temp.put("dl_status",tv_choice.getText().toString());
                 temp.put("r_id",r_id);
                 return temp;
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
                 Intent intent = getIntent();
-              String r_id = intent.getExtras().getString("r_id");
+                r_id = intent.getExtras().getString("r_id");
                 temp.put("dl_status",tv_ok.getText().toString());
                 temp.put("r_id",r_id);
                 Log.v("카카",r_id);
@@ -206,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -213,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -221,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MypageActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -237,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MoneyActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -265,7 +269,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_new:
                         requestQueue.add(stringRequest);
                         getSupportFragmentManager().beginTransaction().replace(R.id.list, fragment_new).commit();
-
                         break;
                     case R.id.menu_choice:
                         requestQueue2.add(stringRequest2);

@@ -42,6 +42,7 @@ public class ListActivity extends AppCompatActivity {
     StringRequest stringRequest, stringRequest2;
     JSONArray jarr;
     DeliveryVO deliveryVO;
+    String r_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +73,16 @@ public class ListActivity extends AppCompatActivity {
         btn_home = findViewById(R.id.btn_home);
         btn_push = findViewById(R.id.btn_push);
 
+        Intent intent = getIntent();
+        r_id = intent.getExtras().getString("r_id");
+        textView.setText(r_id);
+
         // 네비게이션 바 이동
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListActivity.this, MainActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -85,6 +91,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListActivity.this, ListActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -93,6 +100,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListActivity.this, MypageActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -109,6 +117,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListActivity.this, MoneyActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -163,7 +172,7 @@ public class ListActivity extends AppCompatActivity {
         protected Map<String, String> getParams() throws AuthFailureError {
             // 전송할 데이터 key, value로 셋팅하기!
             Map<String,String> temp = new HashMap<>();
-            temp.put("r_id",textView.getText().toString()); // 로그인할 때 아이디로 수정하면 된다.
+            temp.put("r_id",r_id); // 로그인할 때 아이디로 수정하면 된다.
             temp.put("dl_date",tv_c_date.getText().toString());
             return temp;
         }
@@ -215,7 +224,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
-                temp.put("r_id",textView.getText().toString()); // 로그인 할때 아이디로 변경해야한다.
+                temp.put("r_id",r_id); // 로그인 할때 아이디로 변경해야한다.
 
                 return temp;
             }

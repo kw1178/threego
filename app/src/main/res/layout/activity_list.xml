@@ -89,7 +89,6 @@
         android:layout_height="51dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="kcs"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/calendarView"

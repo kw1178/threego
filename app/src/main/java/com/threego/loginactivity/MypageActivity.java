@@ -1,5 +1,6 @@
 package com.threego.loginactivity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -17,6 +18,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,6 +30,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static androidx.core.view.GravityCompat.START;
 
@@ -51,6 +55,7 @@ public class MypageActivity extends AppCompatActivity {
     RequestQueue requestQueue, requestQueue2; // Server와 통신할 통로
     StringRequest stringRequest, stringRequest2; // 내가 전송할 데이터!
 
+    String r_id;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -96,12 +101,16 @@ public class MypageActivity extends AppCompatActivity {
         ibtn_back = findViewById(R.id.ibtn_back);
         ibtn_back.setVisibility(View.INVISIBLE);
 
+        Intent intent = getIntent();
+        r_id = intent.getExtras().getString("r_id");
+        tv_1.setText(r_id);
+
         // requestQueue 생성! Spring이랑 연결하기!
         String url = "http://222.102.104.230:8081/threego/mypage.do";
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 // 서버에서 돌려준 응답을 처리!
@@ -134,7 +143,15 @@ public class MypageActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.getMessage();
             }
-        });
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> temp = new HashMap<>();
+                temp.put("r_id",r_id);
+                return temp;
+            }
+        };
 
         // 버튼 클릭 없어도 통신 전송 가능
         requestQueue.add(stringRequest);
@@ -189,27 +206,28 @@ public class MypageActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
             }
-        });
+        })
+        {
+
+        // request
+        @Nullable
+        @Override   // 리턴타입         메소드이름(매개변수 X) 예외처리
+        protected Map<String, String> getParams() throws AuthFailureError {
+            // 전송할 데이터 key, value로 셋팅하기!
+            Map<String,String> temp = new HashMap<>();
+            temp.put("r_id",r_id);
+
+            return temp;
+        }
+    };
         requestQueue2.add(stringRequest2);
-//        {
-//
-//        // request
-//        @Nullable
-//        @Override   // 리턴타입         메소드이름(매개변수 X) 예외처리
-//        protected Map<String, String> getParams() throws AuthFailureError {
-//            // 전송할 데이터 key, value로 셋팅하기!
-//            Map<String,String> temp = new HashMap<>();
-//            temp.put("r_id",tv_1.getText().toString());
-//
-//            return temp;
-//        }
-//    };
 
         // 네비게이션 바 이동
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, MainActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -217,6 +235,7 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, ListActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -225,6 +244,7 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, MypageActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -241,6 +261,7 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, MoneyActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
