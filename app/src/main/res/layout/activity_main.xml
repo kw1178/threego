@@ -70,6 +70,7 @@
             android:id="@+id/tv_count_choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#101010"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guideline22"

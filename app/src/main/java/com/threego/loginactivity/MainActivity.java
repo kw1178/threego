@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 try {
-
+                    Log.v("zzzzz",response);
                     jarr = new JSONArray(response);
                     for (int i=0,j=jarr.length();i<j;i++){
                         tv_count_new.setText(jarr.length()+"");
