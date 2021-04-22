@@ -258,15 +258,12 @@ public class MainActivity extends AppCompatActivity {
 
         bv = findViewById(R.id.bottomNavigationView);
 
-
-
         bv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 tv_count_new.setText("");
                 tv_count_choice.setText("");
                 tv_count_ok.setText("");
-                tv_rider.setText(r_id+"님 환영합니다.");
                 switch (item.getItemId()){
                     case R.id.menu_new:
                         requestQueue.add(stringRequest);
@@ -281,9 +278,7 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.list, fragment_ok).commit();
                         break;
                 }
-
-
-                return true;
+              return true;
             }
         });
 
@@ -294,6 +289,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(START);
+                Intent intent = getIntent();
+                r_id = intent.getExtras().getString("r_id");
                 tv_rider.setText(r_id+"님 환영합니다.");
             }
         });

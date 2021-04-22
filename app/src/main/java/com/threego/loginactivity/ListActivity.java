@@ -35,7 +35,7 @@ public class ListActivity extends AppCompatActivity {
     ImageView iv_menu;
     ImageButton ibtn_close;
     CalendarView calendarView;
-    TextView textView, tv_all, tv_choice, tv_c_date;
+    TextView textView, tv_all, tv_choice, tv_c_date, tv_rider;
     DrawerLayout drawerLayout;
     Button btn_delivery, btn_mypage, btn_ad, btn_money, btn_notice, btn_home, btn_push;
     RequestQueue requestQueue, requestQueue2;
@@ -50,7 +50,7 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         calendarView = (CalendarView) findViewById(R.id.calendarView);
-
+        tv_rider = findViewById(R.id.tv_rider);
         textView = findViewById(R.id.textView);
         tv_all = findViewById(R.id.tv_all);
         textView.setVisibility(View.INVISIBLE);
@@ -244,6 +244,9 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(START);
+                Intent intent = getIntent();
+                r_id = intent.getExtras().getString("r_id");
+                tv_rider.setText(r_id+"님 환영합니다.");
             }
         });
 

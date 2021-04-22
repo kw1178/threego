@@ -41,7 +41,7 @@ public class MypageActivity extends AppCompatActivity {
     Button btn_review;
     RatingBar ratingBar;
 
-    TextView tv_r_name, tv_r_phone, tv_r_gender, tv_r_age, tv_r_box, tv_1, tv_list1, tv_list2, tv_list3, tv_list4, tv_bg;
+    TextView tv_r_name, tv_r_phone, tv_r_gender, tv_r_age, tv_r_box, tv_1, tv_list1, tv_list2, tv_list3, tv_list4, tv_bg,tv_rider;
     DrawerLayout drawerLayout;
     Button btn_delivery, btn_mypage, btn_ad, btn_money, btn_notice, btn_home;
     JSONArray jarr, r_jarr;
@@ -83,6 +83,7 @@ public class MypageActivity extends AppCompatActivity {
         btn_money = findViewById(R.id.btn_money);
         btn_notice = findViewById(R.id.btn_notice);
         btn_home = findViewById(R.id.btn_home);
+        tv_rider = findViewById(R.id.tv_rider);
         Log.v("changsoo", "ok"); // debug 용도
 
         // listView에 사용되는 애들 id값 & invisible 설정
@@ -315,6 +316,9 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(START);
+                Intent intent = getIntent();
+                r_id = intent.getExtras().getString("r_id");
+                tv_rider.setText(r_id+"님 환영합니다.");
             }
         });
 
