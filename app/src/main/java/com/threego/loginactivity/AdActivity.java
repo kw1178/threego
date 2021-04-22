@@ -6,6 +6,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.media.MediaMetadataRetriever;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -166,9 +167,15 @@ public class AdActivity extends AppCompatActivity {
                     tv_money.setText(String.valueOf((100-obj.getInt("a_time"))*60));
                     circle.setProgress(100-obj.getInt("a_time"));
                     String rider = obj.getString("r_id");
+                    String adnum = obj.getString("a_adnum");
+                    if(obj.getInt("a_time")>0){
+                        int id = getRawResIdByName("alssa");
+                        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+id);
+                        videoView.setVideoURI(uri); // url 연결
+                        videoView.start();
 
-                    // 광고 횟수 0이 되면 예치금으로 업데이트되는 통신
-                    if(obj.getInt("a_time")==0 && tv_money.getText().toString()!="0"){
+                    }else if(obj.getInt("a_time")==0){
+                        // 광고 횟수 0이 되면 예치금으로 업데이트되는 통신
                         moneyReq = Volley.newRequestQueue(getApplicationContext());
                         String moneyUrl = "http://222.102.104.235:8081/threego/moneyUpdate.do";
 
@@ -194,6 +201,7 @@ public class AdActivity extends AppCompatActivity {
                             protected Map<String, String> getParams() throws AuthFailureError {
                                 Map<String, String> temp = new HashMap<>();
                                 temp.put("a_money", tv_money.getText().toString());
+                                temp.put("a_adnum", adnum);
                                 temp.put("r_id", rider);
                                 return temp;
                             }
@@ -217,13 +225,10 @@ public class AdActivity extends AppCompatActivity {
         vidReq.add(vidStrReq);
 
         // videoView 사용하기
-        int id = getRawResIdByName("alssa");
         mediaController = new MediaController(this); // 미디어 제어 부분
         mediaController.setAnchorView(videoView);   // videoView에 연결
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+id);
         videoView.setMediaController(mediaController);  // 미디어 제어 부분 세팅
-        videoView.setVideoURI(uri); // url 연결
-        videoView.start();
+
 
         // progress bar 바꾸기, 알고리즘 필요
         //pro.setProgress(getPlayTime("android.resource://"+getPackageName()+"/"+id));
