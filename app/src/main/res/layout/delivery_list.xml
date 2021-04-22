@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_address"
+        android:id="@+id/tv_c_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -94,15 +94,15 @@
         android:layout_marginTop="36dp"
         android:text="고객도착시간"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/tv_address"
-        app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_c_address"
+        app:layout_constraintTop_toBottomOf="@+id/tv_c_address" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_address"
+        app:layout_constraintEnd_toStartOf="@+id/tv_c_address"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toEndOf="@+id/tv_shoplocation"
         app:layout_constraintTop_toTopOf="parent"

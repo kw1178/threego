@@ -5,9 +5,25 @@
     android:layout_height="match_parent"
     tools:context=".Fragment_new">
 
+    <TextView
+        android:id="@+id/tv_new3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tv_new2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="신규"
+        android:visibility="invisible" />
+
     <ListView
-        android:id="@+id/list_new"
+        android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true" />
+        android:clickable="true" >
+
+    </ListView>
 </FrameLayout>

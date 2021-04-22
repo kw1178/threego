@@ -6,6 +6,8 @@ public class DeliveryVO {
     private int dl_number;  // 주문번호
     private String dl_date; // 날짜
     private String r_id;    // 라이더 id
+    private String dl_r_location; // 라이더 출발지
+    private String dl_s_location; // 가게 주소
     private String dl_shop; // 가게이름
     private String dl_food; // 음식명
     private int dl_price;   // 음식가격
@@ -15,12 +17,13 @@ public class DeliveryVO {
     private String dl_status;   // 콜 상태
     private String dl_r_lati;   // 라이더 위도
     private String dl_r_longi;  // 라이더 경도
-    private String dl_shoploc;  // 가게 위치
+    private String dl_s_lati;  // 가게 위치
+    private String dl_s_longi;
     private String dl_distoshop;    // 현위치-가게거리
     private String dl_distoadd;     // 가게 - 고객집거리
     private String dl_dltime;   // 배달완료예상시간
-
-
+    private String dl_c_lati;
+    private String dl_c_longi;
 
     public int getDl_number() {
         return dl_number;
@@ -44,6 +47,22 @@ public class DeliveryVO {
 
     public void setR_id(String r_id) {
         this.r_id = r_id;
+    }
+
+    public String getDl_r_location() {
+        return dl_r_location;
+    }
+
+    public void setDl_r_location(String dl_r_location) {
+        this.dl_r_location = dl_r_location;
+    }
+
+    public String getDl_s_location() {
+        return dl_s_location;
+    }
+
+    public void setDl_s_location(String dl_s_location) {
+        this.dl_s_location = dl_s_location;
     }
 
     public String getDl_shop() {
@@ -118,12 +137,20 @@ public class DeliveryVO {
         this.dl_r_longi = dl_r_longi;
     }
 
-    public String getDl_shoploc() {
-        return dl_shoploc;
+    public String getDl_s_lati() {
+        return dl_s_lati;
     }
 
-    public void setDl_shoploc(String dl_shoploc) {
-        this.dl_shoploc = dl_shoploc;
+    public void setDl_s_lati(String dl_s_lati) {
+        this.dl_s_lati = dl_s_lati;
+    }
+
+    public String getDl_s_longi() {
+        return dl_s_longi;
+    }
+
+    public void setDl_s_longi(String dl_s_longi) {
+        this.dl_s_longi = dl_s_longi;
     }
 
     public String getDl_distoshop() {
@@ -150,12 +177,30 @@ public class DeliveryVO {
         this.dl_dltime = dl_dltime;
     }
 
+    public String getDl_c_lati() {
+        return dl_c_lati;
+    }
+
+    public void setDl_c_lati(String dl_c_lati) {
+        this.dl_c_lati = dl_c_lati;
+    }
+
+    public String getDl_c_longi() {
+        return dl_c_longi;
+    }
+
+    public void setDl_c_longi(String dl_c_longi) {
+        this.dl_c_longi = dl_c_longi;
+    }
+
     @Override
     public String toString() {
         return "DeliveryVO{" +
                 "dl_number=" + dl_number +
                 ", dl_date='" + dl_date + '\'' +
                 ", r_id='" + r_id + '\'' +
+                ", dl_r_location='" + dl_r_location + '\'' +
+                ", dl_s_location='" + dl_s_location + '\'' +
                 ", dl_shop='" + dl_shop + '\'' +
                 ", dl_food='" + dl_food + '\'' +
                 ", dl_price=" + dl_price +
@@ -165,10 +210,13 @@ public class DeliveryVO {
                 ", dl_status='" + dl_status + '\'' +
                 ", dl_r_lati='" + dl_r_lati + '\'' +
                 ", dl_r_longi='" + dl_r_longi + '\'' +
-                ", dl_shoploc='" + dl_shoploc + '\'' +
+                ", dl_s_lati='" + dl_s_lati + '\'' +
+                ", dl_s_longi='" + dl_s_longi + '\'' +
                 ", dl_distoshop='" + dl_distoshop + '\'' +
                 ", dl_distoadd='" + dl_distoadd + '\'' +
                 ", dl_dltime='" + dl_dltime + '\'' +
+                ", dl_c_lati='" + dl_c_lati + '\'' +
+                ", dl_c_longi='" + dl_c_longi + '\'' +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
 package com.threego.loginactivity;
 
-public class ReviewVO {
+public class RatingsVO {
     private String r_id;  // 라이더 아이디
     private int dl_number; // 고객 번호
     private String ra_evals;    // 한줄평

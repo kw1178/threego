@@ -6,6 +6,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -16,14 +22,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoginActivity"
         tools:targetApi="n">
-        <activity android:name=".ReviewActivity"></activity>
-        <activity android:name=".MypageActivity"></activity>
-        <activity android:name=".MoneyActivity"></activity>
+        <activity android:name=".OutputActivity"></activity>
+        <activity android:name=".MypageActivity" />
+        <activity android:name=".MoneyActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".AdActivity" />
         <activity android:name=".NoticeActivity" />
         <activity android:name=".MapActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MapActivity2" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".JoinActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -32,17 +39,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <!--
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCXKSkHCjszmBdAnOD0Xr-U4bcXN4Jx9FU" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
+        -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.threego.loginactivity.fileprovider"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

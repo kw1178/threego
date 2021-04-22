@@ -7,7 +7,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -27,8 +26,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,13 +35,14 @@ public class ListActivity extends AppCompatActivity {
     ImageView iv_menu;
     ImageButton ibtn_close;
     CalendarView calendarView;
-    TextView textView, tv_all, tv_choice, tv_c_date;
+    TextView textView, tv_all, tv_choice, tv_c_date, tv_rider;
     DrawerLayout drawerLayout;
     Button btn_delivery, btn_mypage, btn_ad, btn_money, btn_notice, btn_home, btn_push;
     RequestQueue requestQueue, requestQueue2;
     StringRequest stringRequest, stringRequest2;
     JSONArray jarr;
     DeliveryVO deliveryVO;
+    String r_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +50,7 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         calendarView = (CalendarView) findViewById(R.id.calendarView);
-
+        tv_rider = findViewById(R.id.tv_rider);
         textView = findViewById(R.id.textView);
         tv_all = findViewById(R.id.tv_all);
         textView.setVisibility(View.INVISIBLE);
@@ -60,7 +58,7 @@ public class ListActivity extends AppCompatActivity {
         tv_c_date = findViewById(R.id.tv_c_date);
         tv_c_date.setVisibility(View.INVISIBLE);
 
-        tv_choice=findViewById(R.id.tv_choice);
+        tv_choice=findViewById(R.id.tv_choice2);
 
         iv_menu = findViewById(R.id.iv_menu);
         ibtn_close = findViewById(R.id.ibtn_close);
@@ -75,11 +73,16 @@ public class ListActivity extends AppCompatActivity {
         btn_home = findViewById(R.id.btn_home);
         btn_push = findViewById(R.id.btn_push);
 
+        Intent intent = getIntent();
+        r_id = intent.getExtras().getString("r_id");
+        textView.setText(r_id);
+
         // 네비게이션 바 이동
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListActivity.this, MainActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -88,6 +91,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListActivity.this, ListActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -96,6 +100,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListActivity.this, MypageActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -112,6 +117,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListActivity.this, MoneyActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -123,7 +129,7 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        // 통신
+        // 해당 날짜에 속한 콜비 총합 통신
         String url = "http://222.102.104.230:8081/threego/delivery.do";
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -166,7 +172,7 @@ public class ListActivity extends AppCompatActivity {
         protected Map<String, String> getParams() throws AuthFailureError {
             // 전송할 데이터 key, value로 셋팅하기!
             Map<String,String> temp = new HashMap<>();
-            temp.put("r_id",textView.getText().toString()); // 로그인할 때 아이디로 수정하면 된다.
+            temp.put("r_id",r_id); // 로그인할 때 아이디로 수정하면 된다.
             temp.put("dl_date",tv_c_date.getText().toString());
             return temp;
         }
@@ -185,7 +191,7 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        // 콜 리스트 통신
+        // 콜 리스트 전체 총합 통신
         String URL = "http://222.102.104.230:8081/threego/call.do";
         requestQueue2 = Volley.newRequestQueue(getApplicationContext());
         stringRequest2 = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
@@ -201,8 +207,8 @@ public class ListActivity extends AppCompatActivity {
                         deliveryVO.setDl_call(jobj.getInt("dl_call"));
 
                         sum += deliveryVO.getDl_call();
-                        tv_all.setText(sum+"원");
                     }
+                    tv_all.setText(sum+"원");
                 }catch (Exception e){
 
                 }
@@ -218,7 +224,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
-                temp.put("r_id",textView.getText().toString()); // 로그인 할때 아이디로 변경해야한다.
+                temp.put("r_id",r_id); // 로그인 할때 아이디로 변경해야한다.
 
                 return temp;
             }
@@ -238,6 +244,9 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(START);
+                Intent intent = getIntent();
+                r_id = intent.getExtras().getString("r_id");
+                tv_rider.setText(r_id+"님 환영합니다.");
             }
         });
 

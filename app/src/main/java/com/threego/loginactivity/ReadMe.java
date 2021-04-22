@@ -30,8 +30,7 @@ public class ReadMe {
     *
     *  7. 상세 페이지
     *    MypageActivity, activity_mypage.xml - 상세페이지 화면
-    *   ReviewActivity, activity_review.xml - 한줄평 화면
-    *   ReviewVO, review_list.xml - listView 화면
+    *   RatingsVO, review_list.xml - listView 화면
      *
      *  8. 예치금 내역 페이지
     *    MoneyActivity, activity_money.xml - 예치금 화면

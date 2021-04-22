@@ -1,15 +1,14 @@
 package com.threego.loginactivity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.view.View;
-import android.view.textclassifier.ConversationActions;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -24,13 +23,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -45,7 +41,7 @@ public class MypageActivity extends AppCompatActivity {
     Button btn_review;
     RatingBar ratingBar;
 
-    TextView tv_r_name, tv_r_phone, tv_r_gender, tv_r_age, tv_r_box, tv_1, tv_list1, tv_list2, tv_list3, tv_list4, tv_bg;
+    TextView tv_r_name, tv_r_phone, tv_r_gender, tv_r_age, tv_r_box, tv_1, tv_list1, tv_list2, tv_list3, tv_list4, tv_bg,tv_rider;
     DrawerLayout drawerLayout;
     Button btn_delivery, btn_mypage, btn_ad, btn_money, btn_notice, btn_home;
     JSONArray jarr, r_jarr;
@@ -59,6 +55,7 @@ public class MypageActivity extends AppCompatActivity {
     RequestQueue requestQueue, requestQueue2; // Server와 통신할 통로
     StringRequest stringRequest, stringRequest2; // 내가 전송할 데이터!
 
+    String r_id;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -86,6 +83,7 @@ public class MypageActivity extends AppCompatActivity {
         btn_money = findViewById(R.id.btn_money);
         btn_notice = findViewById(R.id.btn_notice);
         btn_home = findViewById(R.id.btn_home);
+        tv_rider = findViewById(R.id.tv_rider);
         Log.v("changsoo", "ok"); // debug 용도
 
         // listView에 사용되는 애들 id값 & invisible 설정
@@ -104,12 +102,16 @@ public class MypageActivity extends AppCompatActivity {
         ibtn_back = findViewById(R.id.ibtn_back);
         ibtn_back.setVisibility(View.INVISIBLE);
 
+        Intent intent = getIntent();
+        r_id = intent.getExtras().getString("r_id");
+        tv_1.setText(r_id);
+
         // requestQueue 생성! Spring이랑 연결하기!
         String url = "http://222.102.104.230:8081/threego/mypage.do";
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 // 서버에서 돌려준 응답을 처리!
@@ -142,7 +144,15 @@ public class MypageActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.getMessage();
             }
-        });
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> temp = new HashMap<>();
+                temp.put("r_id",r_id);
+                return temp;
+            }
+        };
 
         // 버튼 클릭 없어도 통신 전송 가능
         requestQueue.add(stringRequest);
@@ -164,7 +174,7 @@ public class MypageActivity extends AppCompatActivity {
 
                         JSONObject jobj = r_jarr.getJSONObject(i);
 
-                        ReviewVO reviewVO = new ReviewVO();
+                        RatingsVO ratingsVO = new RatingsVO();
 
                         // ArrayAdapter 를 한줄에 보여주기 위한 것
                         review.add("\t"+"\t"+"\t"+"\t"+jobj.getString("ra_reviewnum")+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+jobj.getString("dl_number")+"\t"+"\t"+"\t"+"\t"+jobj.getString("ra_evals"));
@@ -172,8 +182,8 @@ public class MypageActivity extends AppCompatActivity {
                         Log.v("changsoo", review+"");
 
                         // 별점 평균 구하기  result[3] = ra_rating
-                        reviewVO.setRa_rating(jobj.getInt("ra_rating"));
-                        result[3] = reviewVO.getRa_rating();
+                        ratingsVO.setRa_rating(jobj.getInt("ra_rating"));
+                        result[3] = ratingsVO.getRa_rating();
                         sum += result[3];
                         Log.v("changsoo", sum+""); // 확인용
                         avg = (float) sum/j;
@@ -197,27 +207,28 @@ public class MypageActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
             }
-        });
+        })
+        {
+
+        // request
+        @Nullable
+        @Override   // 리턴타입         메소드이름(매개변수 X) 예외처리
+        protected Map<String, String> getParams() throws AuthFailureError {
+            // 전송할 데이터 key, value로 셋팅하기!
+            Map<String,String> temp = new HashMap<>();
+            temp.put("r_id",r_id);
+
+            return temp;
+        }
+    };
         requestQueue2.add(stringRequest2);
-//        {
-//
-//        // request
-//        @Nullable
-//        @Override   // 리턴타입         메소드이름(매개변수 X) 예외처리
-//        protected Map<String, String> getParams() throws AuthFailureError {
-//            // 전송할 데이터 key, value로 셋팅하기!
-//            Map<String,String> temp = new HashMap<>();
-//            temp.put("r_id",tv_1.getText().toString());
-//
-//            return temp;
-//        }
-//    };
 
         // 네비게이션 바 이동
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, MainActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -225,6 +236,7 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, ListActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -233,6 +245,7 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, MypageActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -249,6 +262,7 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, MoneyActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -302,6 +316,9 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(START);
+                Intent intent = getIntent();
+                r_id = intent.getExtras().getString("r_id");
+                tv_rider.setText(r_id+"님 환영합니다.");
             }
         });
 
