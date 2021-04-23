@@ -137,7 +137,7 @@ public class MypageActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();   // 값 넘어오는지 확인용
+                //Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();   // 값 넘어오는지 확인용
             }
         }, new Response.ErrorListener() {
             @Override
@@ -200,7 +200,7 @@ public class MypageActivity extends AppCompatActivity {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show(); // DB값 확인용
+                //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show(); // DB값 확인용
             }
         }, new Response.ErrorListener() {
             @Override

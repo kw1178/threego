@@ -122,7 +122,7 @@ public class NoticeActivity extends AppCompatActivity {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
