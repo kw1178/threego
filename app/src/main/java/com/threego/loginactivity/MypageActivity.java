@@ -254,6 +254,7 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, AdActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });

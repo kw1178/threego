@@ -109,6 +109,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListActivity.this, AdActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -157,7 +158,7 @@ public class ListActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show(); // 확인용
+                //Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show(); // 확인용
             }
         }, new Response.ErrorListener() {
             @Override
@@ -212,7 +213,7 @@ public class ListActivity extends AppCompatActivity {
                 }catch (Exception e){
 
                 }
-                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override

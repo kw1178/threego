@@ -74,7 +74,6 @@ public class AdActivity extends AppCompatActivity {
         tv_ad_name = findViewById(R.id.tv_ad_name);
         tv_money = findViewById(R.id.tv_money);
         tv_time = findViewById(R.id.tv_time);
-        textView6 = findViewById(R.id.textView6);
 
         //pro = findViewById(R.id.pro);
         circle = findViewById(R.id.circle);
@@ -98,17 +97,15 @@ public class AdActivity extends AppCompatActivity {
         btn_notice = findViewById(R.id.btn_notice);
         btn_home = findViewById(R.id.btn_home);
 
-        Intent intent = getIntent();
-        r_id = intent.getExtras().getString("r_id");
-        textView6.setText(r_id);
-
-
         // 리스트뷰 adVO, adAdapter, adlist
         lv = findViewById(R.id.listView);
         //list.add(new AdVO("https://i.imgur.com/NYJ9bZr.jpg", "고양이", "노르웨이숲", "배달 중"));
         //list.add(new AdVO("https://i.imgur.com/NYJ9bZr.jpg", "고양이", "코숏 기여워", ""));
         //list.add(new AdVO("https://i.imgur.com/NYJ9bZr.jpg", "고양이", "애교쟁이 샴", ""));
         //list.add(new AdVO("https://i.imgur.com/NYJ9bZr.jpg", "고양이", "꾹꾹이 얍", ""));
+
+        Intent intent = getIntent();
+        r_id = intent.getExtras().getString("r_id");
 
         // 네비게이션 바 이동
         btn_home.setOnClickListener(new View.OnClickListener() {
@@ -181,7 +178,7 @@ public class AdActivity extends AppCompatActivity {
                     tv_time.setText(obj.getInt("a_time")+" / 100회");
                     tv_money.setText(String.valueOf((100-obj.getInt("a_time"))*60));
                     circle.setProgress(100-obj.getInt("a_time"));
-                    r_id = obj.getString("r_id");
+                    //String rider = obj.getString("r_id");
                     String adnum = obj.getString("a_adnum");
 
                     if(obj.getInt("a_time")>0){
@@ -218,13 +215,7 @@ public class AdActivity extends AppCompatActivity {
                                 Map<String, String> temp = new HashMap<>();
                                 temp.put("a_money", tv_money.getText().toString());
                                 temp.put("a_adnum", adnum);
-
-                                Intent intent = getIntent();
-                                String r_id = intent.getExtras().getString("r_id");
                                 temp.put("r_id", r_id);
-
-
-
                                 return temp;
                             }
                         };
@@ -319,8 +310,6 @@ public class AdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(START);
-                Intent intent = getIntent();
-                r_id = intent.getExtras().getString("r_id");
                 tv_rider.setText(r_id+"님 환영합니다.");
             }
         });
