@@ -2,17 +2,24 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
+    <item android:name="myActionButtonStyle"
         android:id="@+id/menu_new"
         android:actionLayout="@layout/fragment_new"
-        android:title="신규"
-        android:visible="true" />
+        android:icon="@drawable/newicon"
+        android:title=""
+        android:visible="true"
+                />
+
     <item
         android:id="@+id/menu_choice"
         android:actionLayout="@layout/fragment_choice"
-        android:title="배정" />
+        android:icon="@drawable/choiceicon"
+        android:title=""
+        android:visible="true"
+        />
     <item
         android:id="@+id/menu_ok"
         android:actionLayout="@layout/fragment_ok"
-        android:title="완료" />
+        android:icon="@drawable/done"
+        android:title="" />
 </menu>

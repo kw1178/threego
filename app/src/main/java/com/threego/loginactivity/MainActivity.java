@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
 
         bv = findViewById(R.id.bottomNavigationView);
 
-
+        bv.setItemIconTintList(null);
 
         bv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

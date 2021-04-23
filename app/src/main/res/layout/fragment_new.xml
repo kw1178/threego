@@ -7,15 +7,16 @@
 
     <TextView
         android:id="@+id/tv_new3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="46dp"
+        android:layout_height="56dp"
         android:text="TextView"
         android:visibility="invisible" />
 
     <TextView
         android:id="@+id/tv_new2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="99dp"
+        android:layout_height="83dp"
+        android:fontFamily="@font/hanna"
         android:text="신규"
         android:visibility="invisible" />
 
