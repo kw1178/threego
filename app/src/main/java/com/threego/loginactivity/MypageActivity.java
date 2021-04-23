@@ -285,7 +285,8 @@ public class MypageActivity extends AppCompatActivity {
                 tv_list4.setVisibility(View.VISIBLE);
                 tv_bg.setVisibility(View.VISIBLE);
                 ibtn_back.setVisibility(View.VISIBLE);
-
+                tv_r_box.setVisibility(View.VISIBLE);
+                ratingBar.setVisibility(View.INVISIBLE);
                 btn_review.setVisibility(View.INVISIBLE);
             }
         });
@@ -301,7 +302,8 @@ public class MypageActivity extends AppCompatActivity {
                 tv_list4.setVisibility(View.INVISIBLE);
                 tv_bg.setVisibility(View.INVISIBLE);
                 ibtn_back.setVisibility(View.INVISIBLE);
-
+                tv_r_box.setVisibility(View.INVISIBLE);
+                ratingBar.setVisibility(View.VISIBLE);
                 btn_review.setVisibility(View.VISIBLE);
             }
         });

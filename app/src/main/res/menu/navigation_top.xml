@@ -2,24 +2,23 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:name="myActionButtonStyle"
+    <item
         android:id="@+id/menu_new"
+        android:name="myActionButtonStyle"
         android:actionLayout="@layout/fragment_new"
-        android:icon="@drawable/newicon"
-        android:title=""
-        android:visible="true"
-                />
+        android:icon="@drawable/zzxc"
+        android:title=" "
+        android:visible="true" />
 
     <item
         android:id="@+id/menu_choice"
         android:actionLayout="@layout/fragment_choice"
-        android:icon="@drawable/choiceicon"
-        android:title=""
-        android:visible="true"
-        />
+        android:icon="@drawable/asdasdsa"
+        android:title=" "
+        android:visible="true" />
     <item
         android:id="@+id/menu_ok"
         android:actionLayout="@layout/fragment_ok"
-        android:icon="@drawable/done"
-        android:title="" />
+        android:icon="@drawable/dsa"
+        android:title=" " />
 </menu>

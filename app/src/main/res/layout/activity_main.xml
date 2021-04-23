@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.25" />
+            app:layout_constraintGuide_percent="0.27" />
 
         <TextView
             android:id="@+id/textView14"
@@ -144,12 +144,11 @@
         </FrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
+            android:id="@+id/bv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:itemIconSize="58dp"
             app:labelVisibilityMode="unlabeled"
-            android:background="@color/white"
             app:itemIconTint="@null"
             app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintEnd_toEndOf="parent"

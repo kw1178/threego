@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     String r_id;
 
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -256,7 +257,9 @@ public class MainActivity extends AppCompatActivity {
         // fragment 선택할때 이동하기
         getSupportFragmentManager().beginTransaction().replace(R.id.list, fragment_new).commit();
 
-        bv = findViewById(R.id.bottomNavigationView);
+        bv = findViewById(R.id.bv);
+
+        bv.setItemIconTintList(null);
 
         bv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -291,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(START);
                 Intent intent = getIntent();
                 r_id = intent.getExtras().getString("r_id");
-                tv_rider.setText(r_id+"님 환영합니다.");
+                tv_rider.setText(r_id+"님 환영합니다!");
             }
         });
 
