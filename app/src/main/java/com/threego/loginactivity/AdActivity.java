@@ -49,7 +49,7 @@ public class AdActivity extends AppCompatActivity {
 
     ImageView iv_menu, iv_gif;
     ImageButton ibtn_close;
-    TextView tv_money, tv_ad_name, tv_time;
+    TextView tv_money, tv_ad_name, tv_time, tv_rider, textView6;
     ProgressBar pro;
     CircleProgressBar circle;
     VideoView videoView;
@@ -62,6 +62,9 @@ public class AdActivity extends AppCompatActivity {
     ListView lv;
     AdAdapter adapter;
     ArrayList<AdVO> list = new ArrayList<>();
+
+    JSONObject obj;
+    String r_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +86,7 @@ public class AdActivity extends AppCompatActivity {
 
         iv_menu = findViewById(R.id.iv_menu);
         ibtn_close = findViewById(R.id.ibtn_close);
+        tv_rider = findViewById(R.id.tv_rider);
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
@@ -100,13 +104,17 @@ public class AdActivity extends AppCompatActivity {
         //list.add(new AdVO("https://i.imgur.com/NYJ9bZr.jpg", "고양이", "애교쟁이 샴", ""));
         //list.add(new AdVO("https://i.imgur.com/NYJ9bZr.jpg", "고양이", "꾹꾹이 얍", ""));
 
+        Intent intent = getIntent();
+        r_id = intent.getExtras().getString("r_id");
 
         // 네비게이션 바 이동
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdActivity.this, MainActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -114,6 +122,7 @@ public class AdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdActivity.this, ListActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -122,6 +131,7 @@ public class AdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdActivity.this, MypageActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -130,6 +140,7 @@ public class AdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdActivity.this, AdActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -138,6 +149,7 @@ public class AdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdActivity.this, MoneyActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -161,13 +173,14 @@ public class AdActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 //Log.d("test", response.toString());
                 try {
-                    JSONObject obj = new JSONObject(response);
+                    obj = new JSONObject(response);
                     tv_ad_name.setText(obj.getString("a_contents")+" : "+obj.getString("a_name"));
                     tv_time.setText(obj.getInt("a_time")+" / 100회");
                     tv_money.setText(String.valueOf((100-obj.getInt("a_time"))*60));
                     circle.setProgress(100-obj.getInt("a_time"));
-                    String rider = obj.getString("r_id");
+                    //String rider = obj.getString("r_id");
                     String adnum = obj.getString("a_adnum");
+
                     if(obj.getInt("a_time")>0){
                         int id = getRawResIdByName("alssa");
                         Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+id);
@@ -202,7 +215,7 @@ public class AdActivity extends AppCompatActivity {
                                 Map<String, String> temp = new HashMap<>();
                                 temp.put("a_money", tv_money.getText().toString());
                                 temp.put("a_adnum", adnum);
-                                temp.put("r_id", rider);
+                                temp.put("r_id", r_id);
                                 return temp;
                             }
                         };
@@ -271,11 +284,13 @@ public class AdActivity extends AppCompatActivity {
                 Log.e("test", error.toString(), error);
             }
         }) {
-//            @Nullable
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//                // get방식에는 필요없음, post 방식에만!
-//            }
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> temp = new HashMap<>();
+                temp.put("r_id", r_id);
+                return temp;
+            }
         };
         adStrReq.setShouldCache(false);
         adReq.add(adStrReq);
@@ -295,6 +310,7 @@ public class AdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(START);
+                tv_rider.setText(r_id+"님 환영합니다.");
             }
         });
 
