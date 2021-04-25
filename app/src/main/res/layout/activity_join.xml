@@ -50,15 +50,14 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="244dp"
+        android:layout_width="250dp"
         android:layout_height="390dp"
-        android:layout_marginTop="100dp"
         android:background="@drawable/view_round"
         android:elevation="1dp"
 
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
     <EditText
         android:id="@+id/ed_id"
