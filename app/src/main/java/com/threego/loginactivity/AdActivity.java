@@ -176,7 +176,7 @@ public class AdActivity extends AppCompatActivity {
                     obj = new JSONObject(response);
                     tv_ad_name.setText(obj.getString("a_contents")+" : "+obj.getString("a_name"));
                     tv_time.setText(obj.getInt("a_time")+" / 100회");
-                    tv_money.setText(String.valueOf((100-obj.getInt("a_time"))*60));
+                    tv_money.setText(String.valueOf((100-obj.getInt("a_time"))*60)+"원");
                     circle.setProgress(100-obj.getInt("a_time"));
                     //String rider = obj.getString("r_id");
                     String adnum = obj.getString("a_adnum");

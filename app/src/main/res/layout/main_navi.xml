@@ -143,6 +143,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo_white" />
 
+        <View
+            android:id="@+id/view3"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="132dp"
+            android:background="@drawable/edge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.navigation.NavigationView>

@@ -42,6 +42,7 @@ public class MypageActivity extends AppCompatActivity {
     RatingBar ratingBar;
 
     TextView tv_r_name, tv_r_phone, tv_r_gender, tv_r_age, tv_r_box, tv_1, tv_list1, tv_list2, tv_list3, tv_list4, tv_bg,tv_rider;
+    TextView textView22;
     DrawerLayout drawerLayout;
     Button btn_delivery, btn_mypage, btn_ad, btn_money, btn_notice, btn_home;
     JSONArray jarr, r_jarr;
@@ -72,6 +73,7 @@ public class MypageActivity extends AppCompatActivity {
         tv_r_box = findViewById(R.id.tv_r_box);
         tv_r_phone = findViewById(R.id.tv_r_phone);
         tv_1 = findViewById(R.id.tv_1);
+        textView22=findViewById(R.id.textView22);
 
         // 네비게이션 id값 찾기
         iv_menu = findViewById(R.id.iv_menu);
@@ -101,6 +103,7 @@ public class MypageActivity extends AppCompatActivity {
         tv_bg.setVisibility(View.INVISIBLE);
         ibtn_back = findViewById(R.id.ibtn_back);
         ibtn_back.setVisibility(View.INVISIBLE);
+
 
         Intent intent = getIntent();
         r_id = intent.getExtras().getString("r_id");
@@ -288,6 +291,7 @@ public class MypageActivity extends AppCompatActivity {
                 ibtn_back.setVisibility(View.VISIBLE);
                 tv_r_box.setVisibility(View.VISIBLE);
                 ratingBar.setVisibility(View.INVISIBLE);
+                textView22.setVisibility(View.INVISIBLE);
                 btn_review.setVisibility(View.INVISIBLE);
             }
         });
@@ -306,6 +310,7 @@ public class MypageActivity extends AppCompatActivity {
                 tv_r_box.setVisibility(View.INVISIBLE);
                 ratingBar.setVisibility(View.VISIBLE);
                 btn_review.setVisibility(View.VISIBLE);
+                textView22.setVisibility(View.VISIBLE);
             }
         });
 

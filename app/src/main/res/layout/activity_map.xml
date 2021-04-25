@@ -5,6 +5,7 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/drop_shadow"
     android:orientation="vertical"
     tools:context="com.threego.loginactivity.MapActivity2">
 
@@ -22,8 +23,9 @@
 
         <LinearLayout
             android:id="@+id/linearLayoutTmap"
-            android:layout_width="460dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical">
 
         </LinearLayout>
@@ -56,10 +58,23 @@
             android:id="@+id/tv_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumbold"
             android:text="신규"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#3D3E3D"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.198" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline26"
@@ -79,9 +94,10 @@
             android:id="@+id/tv_map_shop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="36dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/nanumbold"
             android:text="가게이름"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,6 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:fontFamily="@font/nanumbold"
             android:text="(라면)"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_map_shop"
@@ -104,8 +121,10 @@
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/nanumbold"
             android:text="배달비"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/tv_map_shop"
             app:layout_constraintTop_toBottomOf="@+id/tv_map_shop" />
 
@@ -115,7 +134,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:layout_marginLeft="28dp"
+            android:fontFamily="@font/nanumbold"
             android:text="2,000원"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
             app:layout_constraintStart_toEndOf="@+id/textView24"
             app:layout_constraintTop_toTopOf="@+id/textView24" />
@@ -125,8 +146,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/nanumbold"
+            android:gravity="center"
             android:text="여기에 고객주소가 나올건데 옆에 도착사진 하나 넣으면 좋을듯~"
-            android:textSize="16dp"
+            android:textSize="22sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline26"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -135,11 +158,14 @@
 
         <Button
             android:id="@+id/btn_start"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:background="@drawable/btn_round"
+            android:fontFamily="@font/jua"
             android:text="배정"
-            android:textSize="18sp"
+            android:textSize="22sp"
+            app:backgroundTint="#FF3E3B3B"
             app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -147,10 +173,14 @@
 
         <Button
             android:id="@+id/btn_cancel"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_round"
+            android:fontFamily="@font/jua"
             android:text="취소"
-            android:textSize="18sp"
+
+            android:textSize="22sp"
+            app:backgroundTint="#FF3E3B3B"
             app:layout_constraintBottom_toBottomOf="@+id/btn_start"
             app:layout_constraintEnd_toStartOf="@+id/btn_finish"
             app:layout_constraintHorizontal_bias="0.5"
@@ -159,10 +189,13 @@
 
         <Button
             android:id="@+id/btn_finish"
-            android:layout_width="0dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_round"
+            android:fontFamily="@font/jua"
             android:text="경로안내"
-            android:textSize="18sp"
+            android:textSize="22sp"
+            app:backgroundTint="#FF3E3B3B"
             app:layout_constraintBottom_toBottomOf="@+id/btn_cancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -175,7 +208,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:fontFamily="@font/nanumbold"
             android:text="300m"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="@+id/textView3" />
 
@@ -193,7 +228,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="현 >> 가게"
+            android:fontFamily="@font/nanumbold"
+            android:text="가게까지"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline25"
             app:layout_constraintStart_toStartOf="@+id/textView24"
             app:layout_constraintTop_toBottomOf="@+id/textView24"
@@ -203,10 +240,12 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginLeft="64dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
             android:layout_marginBottom="16dp"
-            android:text="가게 >> 고객 "
+            android:fontFamily="@font/nanumbold"
+            android:text="배달지까지"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline25"
             app:layout_constraintStart_toEndOf="@+id/tv_distoshop"
             app:layout_constraintTop_toTopOf="@+id/tv_distoshop"
@@ -218,7 +257,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:fontFamily="@font/nanumbold"
             android:text="2km"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView8"
             app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toTopOf="@+id/textView8"
@@ -228,6 +269,7 @@
             android:id="@+id/tv_map_foodfinish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumbold"
             android:text="10분 후 조리완료"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_map_food"

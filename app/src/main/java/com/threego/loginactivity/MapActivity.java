@@ -137,7 +137,7 @@ public class MapActivity extends AppCompatActivity {
                     deliveryVO.setDl_distoshop(jobj.getString("dl_distoshop"));
 
                     Log.v("soo",deliveryVO.getDl_c_longi()+"");
-                    tv_map_call.setText(deliveryVO.getDl_call()+"");
+                    tv_map_call.setText(deliveryVO.getDl_call()+"원");
                     Log.v("soo",deliveryVO.getDl_call()+"");
                     tv_map_food.setText(deliveryVO.getDl_food());
                     tv_map_foodfinish.setText(deliveryVO.getDl_cooktime()+" 후 조리완료");
