@@ -84,7 +84,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_map_food"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.42"
+            app:layout_constraintHorizontal_bias="0.814"
             app:layout_constraintStart_toEndOf="@+id/tv_map_food"
             app:layout_constraintTop_toTopOf="@+id/tv_map_food"
             app:layout_constraintVertical_bias="0.0" />
@@ -134,10 +134,10 @@
             android:background="#3D3E3D"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.181" />
+            app:layout_constraintVertical_bias="0.154" />
 
         <TextView
             android:id="@+id/tv_map_call"
@@ -241,21 +241,6 @@
             app:layout_constraintTop_toTopOf="@+id/textView8"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/nanumbold"
-            android:text="배달지까지"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline25"
-            app:layout_constraintStart_toEndOf="@+id/tv_distoshop"
-            app:layout_constraintTop_toTopOf="@+id/tv_distoshop"
-            app:layout_constraintVertical_bias="0.0" />
-
         <ListView
             android:id="@+id/listview"
             android:layout_width="wrap_content"
@@ -263,7 +248,9 @@
             android:clickable="true"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="-13dp"
-            tools:layout_editor_absoluteY="-80dp" />
+            tools:layout_editor_absoluteY="-80dp" >
+
+        </ListView>
 
         <TextView
             android:id="@+id/textView3"
@@ -277,6 +264,18 @@
             app:layout_constraintStart_toStartOf="@+id/textView24"
             app:layout_constraintTop_toBottomOf="@+id/textView24"
             app:layout_constraintVertical_bias="0.2" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:fontFamily="@font/nanumbold"
+            android:text="배달지까지"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_distoshop"
+            app:layout_constraintTop_toTopOf="@+id/tv_distoshop" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

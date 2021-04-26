@@ -166,11 +166,12 @@
 
         <Button
             android:id="@+id/btn_m_change"
-            android:layout_width="110dp"
+            android:layout_width="100dp"
             android:layout_height="40dp"
             android:background="@drawable/btn_round"
             android:fontFamily="@font/nanumbold"
-            android:text="예치금 전환"
+            android:text="출금"
+            android:textSize="18sp"
             app:backgroundTint="#FF3E3B3B"
             app:layout_constraintBottom_toBottomOf="@+id/tv_allmoney"
             app:layout_constraintEnd_toEndOf="parent"

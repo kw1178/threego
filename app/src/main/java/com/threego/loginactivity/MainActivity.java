@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 try {
-                    Log.v("zzzzz",response);
                     jarr = new JSONArray(response);
                     for (int i=0,j=jarr.length();i<j;i++){
                         tv_count_new.setText(jarr.length()+"");
@@ -195,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
                 r_id = intent.getExtras().getString("r_id");
                 temp.put("dl_status",tv_ok.getText().toString());
                 temp.put("r_id",r_id);
-                Log.v("카카",r_id);
                 return temp;
             }
         };

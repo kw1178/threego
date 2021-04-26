@@ -96,7 +96,7 @@ public class MoneyActivity extends AppCompatActivity {
                         MoneyAdapter adapter = new MoneyAdapter(getApplicationContext(), R.layout.money_list, money);
                         list_money.setAdapter(adapter);
                     }
-                    tv_allmoney.setText(sum+"원");
+                    tv_allmoney.setText(sum+"");
                 }catch (Exception e){
                     e.printStackTrace();
                 }

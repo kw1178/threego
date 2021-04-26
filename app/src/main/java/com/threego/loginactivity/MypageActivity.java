@@ -185,9 +185,7 @@ public class MypageActivity extends AppCompatActivity {
                         ratingsVO.setRa_rating(jobj.getInt("ra_rating"));
                         result[3] = ratingsVO.getRa_rating();
                         sum += result[3];
-                        Log.v("changsoo", sum+""); // 확인용
                         avg = (float) sum/j;
-                        Log.v("changsoo", avg+""); // 확인용용
                         ratingBar.setRating(avg);
 
                         // list-up 작업, custom 할 수 없기 때문에 ArrayAdapter 사용
@@ -254,6 +252,7 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, AdActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });

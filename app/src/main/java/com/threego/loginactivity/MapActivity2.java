@@ -62,7 +62,7 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
     BottomNavigationView bv, bv2;
     TextView tv_new, tv_address2, tv_map_shop, tv_map_food, tv_map_foodfinish, tv_map_call, tv_distoadd, tv_distoshop
             , textView24;
-
+    View view;
     StringRequest stringRequest, stringRequest2, stringRequest3;
     RequestQueue requestQueue, requestQueue2, requestQueue3;
 
@@ -119,6 +119,8 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
         tv_distoadd = findViewById(R.id.tv_distoadd);
         tv_distoshop = findViewById(R.id.tv_distoshop);
         textView24 = findViewById(R.id.textView24);
+
+        view = findViewById(R.id.view);
 
         bv = (BottomNavigationView) findViewById(R.id.menu_new);
         bv2 = (BottomNavigationView) findViewById(R.id.menu_choice);

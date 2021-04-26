@@ -104,6 +104,7 @@ public class AdActivity extends AppCompatActivity {
         //list.add(new AdVO("https://i.imgur.com/NYJ9bZr.jpg", "고양이", "애교쟁이 샴", ""));
         //list.add(new AdVO("https://i.imgur.com/NYJ9bZr.jpg", "고양이", "꾹꾹이 얍", ""));
 
+
         Intent intent = getIntent();
         r_id = intent.getExtras().getString("r_id");
 
@@ -215,6 +216,8 @@ public class AdActivity extends AppCompatActivity {
                                 Map<String, String> temp = new HashMap<>();
                                 temp.put("a_money", tv_money.getText().toString());
                                 temp.put("a_adnum", adnum);
+                                Intent intent = getIntent();
+                                String r_id = intent.getExtras().getString("r_id");
                                 temp.put("r_id", r_id);
                                 return temp;
                             }
@@ -288,6 +291,8 @@ public class AdActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
+                Intent intent = getIntent();
+                String r_id = intent.getExtras().getString("r_id");
                 temp.put("r_id", r_id);
                 return temp;
             }
@@ -310,6 +315,8 @@ public class AdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(START);
+                Intent intent = getIntent();
+                r_id = intent.getExtras().getString("r_id");
                 tv_rider.setText(r_id+"님 환영합니다.");
             }
         });
