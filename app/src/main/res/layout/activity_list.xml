@@ -159,7 +159,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:fontFamily="@font/nanumbold"
-        android:text="한달"
+        android:text="확인"
         android:textSize="18sp"
         app:backgroundTint="#FF3E3B3B"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -171,7 +171,7 @@
         <Button
             android:id="@+id/btn_start"
             android:layout_width="115dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/btn_round"
             android:fontFamily="@font/jua"
@@ -186,7 +186,7 @@
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="90dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@drawable/btn_round"
             android:fontFamily="@font/jua"
             android:text="취소"
@@ -201,7 +201,7 @@
         <Button
             android:id="@+id/btn_finish"
             android:layout_width="115dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@drawable/btn_round"
             android:fontFamily="@font/jua"
             android:text="음식도착"
@@ -234,7 +234,7 @@
             android:layout_marginLeft="8dp"
             android:fontFamily="@font/nanumbold"
             android:text="2km"
-            android:textColor="#005BFF"
+            android:textColor="#1C8A1D"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView8"
             app:layout_constraintStart_toEndOf="@+id/textView8"

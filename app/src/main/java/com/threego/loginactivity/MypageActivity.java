@@ -42,7 +42,6 @@ public class MypageActivity extends AppCompatActivity {
     RatingBar ratingBar;
 
     TextView tv_r_name, tv_r_phone, tv_r_gender, tv_r_age, tv_r_box, tv_1, tv_list1, tv_list2, tv_list3, tv_list4, tv_bg,tv_rider;
-    TextView textView22;
     DrawerLayout drawerLayout;
     Button btn_delivery, btn_mypage, btn_ad, btn_money, btn_notice, btn_home;
     JSONArray jarr, r_jarr;
@@ -63,7 +62,7 @@ public class MypageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
-        
+
         // id 값 찾기
         btn_review = findViewById(R.id.btn_review);
         ratingBar = findViewById(R.id.ratingBar);
@@ -73,7 +72,6 @@ public class MypageActivity extends AppCompatActivity {
         tv_r_box = findViewById(R.id.tv_r_box);
         tv_r_phone = findViewById(R.id.tv_r_phone);
         tv_1 = findViewById(R.id.tv_1);
-        textView22=findViewById(R.id.textView22);
 
         // 네비게이션 id값 찾기
         iv_menu = findViewById(R.id.iv_menu);
@@ -103,7 +101,6 @@ public class MypageActivity extends AppCompatActivity {
         tv_bg.setVisibility(View.INVISIBLE);
         ibtn_back = findViewById(R.id.ibtn_back);
         ibtn_back.setVisibility(View.INVISIBLE);
-
 
         Intent intent = getIntent();
         r_id = intent.getExtras().getString("r_id");
@@ -191,7 +188,7 @@ public class MypageActivity extends AppCompatActivity {
                         Log.v("changsoo", sum+""); // 확인용
                         avg = (float) sum/j;
                         Log.v("changsoo", avg+""); // 확인용용
-                       ratingBar.setRating(avg);
+                        ratingBar.setRating(avg);
 
                         // list-up 작업, custom 할 수 없기 때문에 ArrayAdapter 사용
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplication(),R.layout.review_list,review);
@@ -213,17 +210,17 @@ public class MypageActivity extends AppCompatActivity {
         })
         {
 
-        // request
-        @Nullable
-        @Override   // 리턴타입         메소드이름(매개변수 X) 예외처리
-        protected Map<String, String> getParams() throws AuthFailureError {
-            // 전송할 데이터 key, value로 셋팅하기!
-            Map<String,String> temp = new HashMap<>();
-            temp.put("r_id",r_id);
+            // request
+            @Nullable
+            @Override   // 리턴타입         메소드이름(매개변수 X) 예외처리
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // 전송할 데이터 key, value로 셋팅하기!
+                Map<String,String> temp = new HashMap<>();
+                temp.put("r_id",r_id);
 
-            return temp;
-        }
-    };
+                return temp;
+            }
+        };
         requestQueue2.add(stringRequest2);
 
         // 네비게이션 바 이동
@@ -257,7 +254,6 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, AdActivity.class);
-                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -289,9 +285,7 @@ public class MypageActivity extends AppCompatActivity {
                 tv_list4.setVisibility(View.VISIBLE);
                 tv_bg.setVisibility(View.VISIBLE);
                 ibtn_back.setVisibility(View.VISIBLE);
-                tv_r_box.setVisibility(View.VISIBLE);
                 ratingBar.setVisibility(View.INVISIBLE);
-                textView22.setVisibility(View.INVISIBLE);
                 btn_review.setVisibility(View.INVISIBLE);
             }
         });
@@ -307,10 +301,8 @@ public class MypageActivity extends AppCompatActivity {
                 tv_list4.setVisibility(View.INVISIBLE);
                 tv_bg.setVisibility(View.INVISIBLE);
                 ibtn_back.setVisibility(View.INVISIBLE);
-                tv_r_box.setVisibility(View.INVISIBLE);
                 ratingBar.setVisibility(View.VISIBLE);
                 btn_review.setVisibility(View.VISIBLE);
-                textView22.setVisibility(View.VISIBLE);
             }
         });
 

@@ -95,8 +95,8 @@
             android:id="@+id/textView4"
             android:layout_width="342dp"
             android:layout_height="80dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
             android:background="#00FFFFFF"
             android:fontFamily="@font/jua"
             android:gravity="center"
@@ -106,6 +106,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guideline14"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_menu"
             app:layout_constraintTop_toTopOf="@+id/guideline13"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -160,17 +161,6 @@
             app:menu="@menu/navigation_top">
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-        <ImageView
-            android:id="@+id/imageView14"
-            android:layout_width="84dp"
-            android:layout_height="52dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="68dp"
-            android:layout_marginRight="68dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/bike" />
 
         <ImageView
             android:id="@+id/iv_menu"
