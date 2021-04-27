@@ -216,8 +216,8 @@ public class AdActivity extends AppCompatActivity {
                                 Map<String, String> temp = new HashMap<>();
                                 temp.put("a_money", tv_money.getText().toString());
                                 temp.put("a_adnum", adnum);
-                                Intent intent = getIntent();
-                                String r_id = intent.getExtras().getString("r_id");
+                                //Intent intent = getIntent();
+                                r_id = intent.getExtras().getString("r_id");
                                 temp.put("r_id", r_id);
                                 return temp;
                             }
@@ -291,8 +291,8 @@ public class AdActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> temp = new HashMap<>();
-                Intent intent = getIntent();
-                String r_id = intent.getExtras().getString("r_id");
+                //Intent intent = getIntent();
+                r_id = intent.getExtras().getString("r_id");
                 temp.put("r_id", r_id);
                 return temp;
             }
