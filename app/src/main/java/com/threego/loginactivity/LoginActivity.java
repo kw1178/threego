@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // 로그인 통신
-        String url = "http://222.102.104.230:8081/threego/login.do";
+        String url = "http://222.102.104.230:8081/threego/applogin.do";
 
         requestQueue2 = Volley.newRequestQueue(getApplicationContext());
 
