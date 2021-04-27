@@ -64,13 +64,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
-                    Log.v("카카카",response);
                     if (response.equals("1")){
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra("r_id",ed_id.getText().toString());
                         startActivity(intent);
                         finish();
-                        Log.v("카카카",ed_id.getText().toString());
                         Toast.makeText(getApplicationContext(),ed_id.getText().toString()+"환영합니다.",Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(getApplicationContext(),"다시 로그인 해주세요.",Toast.LENGTH_SHORT).show();
@@ -80,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                 }catch (Exception e){
 
                 }
-                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override

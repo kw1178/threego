@@ -9,7 +9,9 @@
     android:layout_marginStart="56dp"
     android:layout_marginLeft="56dp"
     android:layout_marginTop="36dp"
+    android:background="@drawable/drop_shadow"
     android:text="TextView"
+    android:fontFamily="@font/nanumbold"
     android:textSize="18sp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />

@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     String r_id;
 
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 try {
-                    Log.v("zzzzz",response);
                     jarr = new JSONArray(response);
                     for (int i=0,j=jarr.length();i<j;i++){
                         tv_count_new.setText(jarr.length()+"");
@@ -194,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
                 r_id = intent.getExtras().getString("r_id");
                 temp.put("dl_status",tv_ok.getText().toString());
                 temp.put("r_id",r_id);
-                Log.v("카카",r_id);
                 return temp;
             }
         };
@@ -257,7 +256,9 @@ public class MainActivity extends AppCompatActivity {
         // fragment 선택할때 이동하기
         getSupportFragmentManager().beginTransaction().replace(R.id.list, fragment_new).commit();
 
-        bv = findViewById(R.id.bottomNavigationView);
+        bv = findViewById(R.id.bv);
+
+        bv.setItemIconTintList(null);
 
         bv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -292,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(START);
                 Intent intent = getIntent();
                 r_id = intent.getExtras().getString("r_id");
-                tv_rider.setText(r_id+"님 환영합니다.");
+                tv_rider.setText(r_id+"님 환영합니다!");
             }
         });
 

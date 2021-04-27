@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FAF8F8"
+        android:background="@drawable/drop_shadow"
         tools:context=".MoneyActivity">
 
         <androidx.constraintlayout.widget.Guideline
@@ -41,15 +41,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="382dp" />
+            app:layout_constraintGuide_begin="450dp" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#575454"
+            android:background="#FFFFFF"
             android:gravity="center"
-            android:text="쓰리고"
             android:textColor="#FFFFFF"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -60,8 +59,8 @@
 
         <ImageView
             android:id="@+id/iv_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="16dp"
@@ -69,17 +68,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@android:drawable/ic_dialog_dialer" />
+            app:srcCompat="@drawable/menubar" />
 
         <TextView
             android:id="@+id/tv_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/jua"
             android:text="예치금 내역"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline14" />
+            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintStart_toEndOf="@+id/iv_menu"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_2"
@@ -88,6 +90,7 @@
             android:layout_marginStart="44dp"
             android:layout_marginLeft="44dp"
             android:layout_marginTop="64dp"
+            android:fontFamily="@font/nanumbold"
             android:text="날짜"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,13 +100,14 @@
             android:id="@+id/tv_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="64dp"
+            android:fontFamily="@font/nanumbold"
             android:text="예치금"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/tv_4"
-            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toEndOf="@+id/tv_2"
-            app:layout_constraintTop_toBottomOf="@+id/tv_1" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/tv_4"
@@ -112,46 +116,13 @@
             android:layout_marginTop="64dp"
             android:layout_marginEnd="40dp"
             android:layout_marginRight="40dp"
+            android:fontFamily="@font/nanumbold"
             android:text="내역"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline14" />
 
-        <TextView
-            android:id="@+id/tv_allmoney"
-            android:layout_width="57dp"
-            android:layout_height="16dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/textView9"
-            app:layout_constraintEnd_toStartOf="@+id/btn_m_change"
-            app:layout_constraintHorizontal_bias="0.12"
-            app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toTopOf="@+id/textView9" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="예치금 총 금액"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.14"
-            app:layout_constraintStart_toStartOf="@+id/list_review"
-            app:layout_constraintTop_toTopOf="@+id/guideline12"
-            app:layout_constraintVertical_bias="0.87" />
-
-        <Button
-            android:id="@+id/btn_m_change"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="예치금 전환"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_allmoney"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.55"
-            app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toTopOf="@+id/tv_allmoney" />
-
-        <ListView
+                <ListView
             android:id="@+id/list_review"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -163,6 +134,51 @@
 
         </ListView>
 
+        <TextView
+            android:id="@+id/tv_allmoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:fontFamily="@font/nanumbold"
+            android:text="TextView"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView9"
+            app:layout_constraintEnd_toStartOf="@+id/btn_m_change"
+            app:layout_constraintTop_toTopOf="@+id/textView9"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="264dp"
+            android:layout_marginRight="264dp"
+            android:fontFamily="@font/nanumbold"
+            android:text="총 금액 :"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.96"
+            app:layout_constraintStart_toStartOf="@+id/list_review"
+            app:layout_constraintTop_toTopOf="@+id/guideline12"
+            app:layout_constraintVertical_bias="0.896" />
+
+        <Button
+            android:id="@+id/btn_m_change"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_round"
+            android:fontFamily="@font/nanumbold"
+            android:text="출금"
+            android:textSize="18sp"
+            app:backgroundTint="#FF3E3B3B"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_allmoney"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.826"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toTopOf="@+id/tv_allmoney" />
+
         <ListView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -173,9 +189,9 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <include layout="@layout/main_navi"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-app:layout_constraintLeft_toLeftOf="parent"
-app:layout_constraintTop_toTopOf="parent"
-app:layout_constraintBottom_toBottomOf="parent"/>
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    </androidx.drawerlayout.widget.DrawerLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

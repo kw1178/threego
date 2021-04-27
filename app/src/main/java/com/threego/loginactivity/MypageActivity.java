@@ -62,7 +62,7 @@ public class MypageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
-        
+
         // id 값 찾기
         btn_review = findViewById(R.id.btn_review);
         ratingBar = findViewById(R.id.ratingBar);
@@ -185,10 +185,8 @@ public class MypageActivity extends AppCompatActivity {
                         ratingsVO.setRa_rating(jobj.getInt("ra_rating"));
                         result[3] = ratingsVO.getRa_rating();
                         sum += result[3];
-                        Log.v("changsoo", sum+""); // 확인용
                         avg = (float) sum/j;
-                        Log.v("changsoo", avg+""); // 확인용용
-                       ratingBar.setRating(avg);
+                        ratingBar.setRating(avg);
 
                         // list-up 작업, custom 할 수 없기 때문에 ArrayAdapter 사용
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplication(),R.layout.review_list,review);
@@ -210,17 +208,17 @@ public class MypageActivity extends AppCompatActivity {
         })
         {
 
-        // request
-        @Nullable
-        @Override   // 리턴타입         메소드이름(매개변수 X) 예외처리
-        protected Map<String, String> getParams() throws AuthFailureError {
-            // 전송할 데이터 key, value로 셋팅하기!
-            Map<String,String> temp = new HashMap<>();
-            temp.put("r_id",r_id);
+            // request
+            @Nullable
+            @Override   // 리턴타입         메소드이름(매개변수 X) 예외처리
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // 전송할 데이터 key, value로 셋팅하기!
+                Map<String,String> temp = new HashMap<>();
+                temp.put("r_id",r_id);
 
-            return temp;
-        }
-    };
+                return temp;
+            }
+        };
         requestQueue2.add(stringRequest2);
 
         // 네비게이션 바 이동
@@ -254,6 +252,7 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, AdActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
             }
         });
@@ -285,7 +284,7 @@ public class MypageActivity extends AppCompatActivity {
                 tv_list4.setVisibility(View.VISIBLE);
                 tv_bg.setVisibility(View.VISIBLE);
                 ibtn_back.setVisibility(View.VISIBLE);
-
+                ratingBar.setVisibility(View.INVISIBLE);
                 btn_review.setVisibility(View.INVISIBLE);
             }
         });
@@ -301,7 +300,7 @@ public class MypageActivity extends AppCompatActivity {
                 tv_list4.setVisibility(View.INVISIBLE);
                 tv_bg.setVisibility(View.INVISIBLE);
                 ibtn_back.setVisibility(View.INVISIBLE);
-
+                ratingBar.setVisibility(View.VISIBLE);
                 btn_review.setVisibility(View.VISIBLE);
             }
         });

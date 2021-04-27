@@ -53,6 +53,8 @@ public class MapActivity extends AppCompatActivity {
     TextView tv_new, tv_address2, tv_map_shop, tv_map_food, tv_map_foodfinish, tv_map_call, tv_distoadd, tv_distoshop
             , textView24, textView3, textView8;
 
+    View view;
+
     StringRequest stringRequest, stringRequest2;
     RequestQueue requestQueue, requestQueue2;
 
@@ -83,6 +85,7 @@ public class MapActivity extends AppCompatActivity {
         btn_tmap = findViewById(R.id.btn_finish);
         btn_select = findViewById(R.id.btn_start);
 
+        view = findViewById(R.id.view);
         list = findViewById(R.id.list);
 
         tv_new = findViewById(R.id.tv_new);
@@ -137,7 +140,7 @@ public class MapActivity extends AppCompatActivity {
                     deliveryVO.setDl_distoshop(jobj.getString("dl_distoshop"));
 
                     Log.v("soo",deliveryVO.getDl_c_longi()+"");
-                    tv_map_call.setText(deliveryVO.getDl_call()+"");
+                    tv_map_call.setText(deliveryVO.getDl_call()+"원");
                     Log.v("soo",deliveryVO.getDl_call()+"");
                     tv_map_food.setText(deliveryVO.getDl_food());
                     tv_map_foodfinish.setText(deliveryVO.getDl_cooktime()+" 후 조리완료");
@@ -368,7 +371,7 @@ public class MapActivity extends AppCompatActivity {
                     @SuppressLint("IntentReset")
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        view.setVisibility(View.INVISIBLE);
                         ArrayList<String> dialog1 = new ArrayList<>();
                         dialog1.add("10분 뒤 도착예정입니다.");
                         dialog1.add("가는 중");
