@@ -193,7 +193,7 @@ public class NoticeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 listView.setVisibility(View.INVISIBLE);
-                tv_1.setVisibility(View.INVISIBLE);
+
                 tv_2.setVisibility(View.INVISIBLE);
                 tv_3.setVisibility(View.INVISIBLE);
                 tv_4.setVisibility(View.INVISIBLE);
@@ -217,7 +217,7 @@ public class NoticeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 listView.setVisibility(View.VISIBLE);
-                tv_1.setVisibility(View.VISIBLE);
+
                 tv_2.setVisibility(View.VISIBLE);
                 tv_3.setVisibility(View.VISIBLE);
                 tv_4.setVisibility(View.VISIBLE);

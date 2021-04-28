@@ -3,24 +3,22 @@ package com.threego.loginactivity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,8 +26,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -45,15 +41,16 @@ import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapMarkerItem;
 import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapPolyLine;
+import com.skt.Tmap.TMapTapi;
 import com.skt.Tmap.TMapView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.net.URI;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -63,8 +60,8 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
     TextView tv_new, tv_address2, tv_map_shop, tv_map_food, tv_map_foodfinish, tv_map_call, tv_distoadd, tv_distoshop
             , textView24;
     View view;
-    StringRequest stringRequest, stringRequest2, stringRequest3;
-    RequestQueue requestQueue, requestQueue2, requestQueue3;
+    StringRequest stringRequest, stringRequest2, stringRequest3, stringRequest4;
+    RequestQueue requestQueue, requestQueue2, requestQueue3, requestQueue4;
 
     JSONArray jarr;
     LinearLayout linearLayoutTmap;
@@ -87,14 +84,16 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
     ListView listView;
     TMapGpsManager gps;
 
+    String message = null;
+    Handler handler= null;
 
     @Override
     public void onLocationChange(Location location) {
        r_lati = location.getLatitude();
         r_longi = location.getLongitude();
 
-        deliveryVO.setDl_r_lati(r_lati+"");
-        deliveryVO.setDl_r_longi(r_longi+"");
+//        deliveryVO.setDl_r_lati(r_lati+"");
+//        deliveryVO.setDl_r_longi(r_longi+"");
     }
 
     @Override
@@ -130,6 +129,9 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
         listView.setVisibility(View.INVISIBLE);
 
 
+
+
+
         // 통신
         String url = "http://222.102.104.230:8081/threego/location.do";
 
@@ -161,6 +163,7 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
                     deliveryVO.setDl_distoadd(jobj.getString("dl_distoadd"));
                     deliveryVO.setDl_distoshop(jobj.getString("dl_distoshop"));
                     deliveryVO.setR_id(jobj.getString("r_id"));
+                    deliveryVO.setDl_number(jobj.getInt("dl_number"));
 
                     Log.v("soo",deliveryVO.getDl_c_longi()+"");
                     tv_map_call.setText(deliveryVO.getDl_call()+"");
@@ -286,7 +289,7 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-                Toast.makeText(getApplicationContext(),"된다",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"된다",Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -316,7 +319,7 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
         stringRequest2 = new StringRequest(Request.Method.POST, statusUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(),"업데이트 성공!", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"업데이트 성공!", Toast.LENGTH_LONG).show();
                 onBackPressed();    // 뒤로 가기
             }
         }, new Response.ErrorListener() {
@@ -349,7 +352,8 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
         r_longi = gps.getLocation().getLongitude();
         r_lati = gps.getLocation().getLatitude();
 
-        // 버튼 누르면 각각 이동하기
+
+// 버튼 누르면 각각 이동하기
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -366,14 +370,14 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-
                         String URL = "http://222.102.104.230:8081/threego/riderUpdate.do";
 
                         requestQueue3 = Volley.newRequestQueue(getApplicationContext());
                         stringRequest3 = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(getApplicationContext(),"업데이트 성공", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(),"업데이트 성공", Toast.LENGTH_SHORT).show();
+
                                 onBackPressed();
                             }
                         }, new Response.ErrorListener() {
@@ -402,15 +406,79 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
                         requestQueue3.add(stringRequest3);
 
 
-                        // 가게 사장에게 사진 메시지 보내기
+                        Geocoder geocoder = new Geocoder(MapActivity2.this);
+                       List<Address> list = null;
+                        try {
+                            list = geocoder.getFromLocation(r_lati,r_longi,1);
+                            message = "배달을 시작합니다. 잠시만 기다려 주세요!" + System.getProperty("line.separator")
+                                    + "현재 배달원의 위치는 " + list.get(0).getAddressLine(0) + "입니다."+ System.getProperty("line.separator")
+                                    +"tmap://?rGoName="+tv_address2.getText().toString()+"&rGoX="+dl_c_longi+"&rGoY="+dl_c_lati
+                                    +"&rStName="+deliveryVO.getDl_r_location()+"&rStX="+dl_r_longi+"";
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+//                        String message = "배달을 시작합니다. 잠시만 기다려 주세요!" + System.getProperty("line.separator")
+//                                + "현재 배달원의 위치는 " + list.get(0).toString() + "입니다.";
+                        // 고객에게 사진 메시지 보내기
                         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("sms:010-4200-5974")); // 고객 전화번호 DB값 필요!
-                        intent.putExtra("sms_body","Hi");
+                        intent.putExtra("sms_body",message); // 바꿔야 된다.
                         startActivity(intent);
                     }
-                }).setNegativeButton("취소",null).show();
+                }).setNegativeButton("취소",null).setNeutralButton("경로안내", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // tmap연동
+                        TMapTapi tMapTapi = new TMapTapi(MapActivity2.this);
+                        HashMap pathInfo = new HashMap();
+
+                        // 목적지
+                        pathInfo.put("rGoName", tv_address2.getText().toString());
+                        pathInfo.put("rGoX", dl_c_longi);
+                        pathInfo.put("rGoY", dl_c_lati);
+
+                        // 출발지 (현위치)
+                        pathInfo.put("rStName", deliveryVO.getDl_r_location());
+                        pathInfo.put("rStX", dl_r_longi);
+                        pathInfo.put("rStY", dl_r_lati);
+
+                        // 경유지
+                        pathInfo.put("rV1Name", deliveryVO.getDl_shop());
+                        pathInfo.put("rV1X", dl_s_longi);
+                        pathInfo.put("rV1Y", dl_s_lati);
+
+                        Log.v("soo5", dl_c_longi + "");
+
+                        tMapTapi.invokeRoute(pathInfo);
+                    }
+                }).show();
             }
         });
 
+        // 고객평가 jsp로 r_id, dl_number 넘겨주기
+        String URl = "http://222.102.104.230:8081/threego/customer.do";
+
+        requestQueue4 = Volley.newRequestQueue(getApplicationContext());
+        stringRequest4 = new StringRequest(Request.Method.POST, URl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> temp = new HashMap<>();
+                Intent intent1 = getIntent();
+                int dl_number1 = intent1.getExtras().getInt("dl_number");
+                temp.put("dl_number", dl_number1+"");
+                return temp;
+            }
+        };
 
         // 배달완료 선택
         btn_finish.setOnClickListener(new View.OnClickListener() {
@@ -422,10 +490,11 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
                     public void onClick(DialogInterface dialog, int which) {
 
                         requestQueue2.add(stringRequest2);
+                        requestQueue4.add(stringRequest4);
 
                         // 보낼 주소
                         String url = "라이더의 평가를 해주세요."+System.getProperty("line.separator")
-                                +"http://";
+                                +"http://222.102.104.230:8081/threego/customer.do?dl_number="+deliveryVO.getDl_number(); // JSP 만들기
 
                         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("sms:010-4200-5974")); // 고객 전화번호 DB값 필요!
                         intent.putExtra("sms_body",url);

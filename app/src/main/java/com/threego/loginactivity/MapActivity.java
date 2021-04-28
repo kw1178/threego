@@ -299,7 +299,7 @@ public class MapActivity extends AppCompatActivity {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-                Toast.makeText(getApplicationContext(),"된다",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(),"된다",Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -341,7 +341,7 @@ public class MapActivity extends AppCompatActivity {
         stringRequest2 = new StringRequest(Request.Method.POST, statusUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(),"업데이트 성공!", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"업데이트 성공!", Toast.LENGTH_LONG).show();
                 onBackPressed();
             }
         }, new Response.ErrorListener() {
@@ -374,10 +374,10 @@ public class MapActivity extends AppCompatActivity {
                         view.setVisibility(View.INVISIBLE);
                         ArrayList<String> dialog1 = new ArrayList<>();
                         dialog1.add("10분 뒤 도착예정입니다.");
-                        dialog1.add("가는 중");
-                        dialog1.add("준비해라");
-                        dialog1.add("배달잡았다.");
-                        dialog1.add("내가 1등임 ㅇㅇ");
+                        dialog1.add("사정이 있어 늦을 것 같습니다.");
+                        dialog1.add("전화 부탁드립니다.");
+                        dialog1.add("30분 뒤 도착예정입니다.");
+                        dialog1.add("지금 가고 있습니다.");
 
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(),R.layout.dialog_list, dialog1);
                         listView.setAdapter(adapter);
