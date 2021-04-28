@@ -411,9 +411,9 @@ public class MapActivity2 extends AppCompatActivity implements TMapGpsManager.on
                         try {
                             list = geocoder.getFromLocation(r_lati,r_longi,1);
                             message = "배달을 시작합니다. 잠시만 기다려 주세요!" + System.getProperty("line.separator")
-                                    + "현재 배달원의 위치는 " + list.get(0).getAddressLine(0) + "입니다."+ System.getProperty("line.separator")
-                                    +"tmap://?rGoName="+tv_address2.getText().toString()+"&rGoX="+dl_c_longi+"&rGoY="+dl_c_lati
-                                    +"&rStName="+deliveryVO.getDl_r_location()+"&rStX="+dl_r_longi+"";
+                                    + "현재 배달원의 위치는 " + list.get(0).getAddressLine(0) + "입니다."+ System.getProperty("line.separator")+ System.getProperty("line.separator")
+                                    +"https://api2.sktelecom.com/tmap/app/routes?appKey=l7xxa613be7f03824d6db3a06668a8760374&name=&lon="+dl_c_longi+"&lat="+dl_c_lati
+                                    +"&lon="+r_longi+"&lat="+r_lati;
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
