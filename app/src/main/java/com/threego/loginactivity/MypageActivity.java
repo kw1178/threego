@@ -41,7 +41,7 @@ public class MypageActivity extends AppCompatActivity {
     Button btn_review;
     RatingBar ratingBar;
 
-    TextView tv_r_name, tv_r_phone, tv_r_gender, tv_r_age, tv_r_box, tv_1, tv_list1, tv_list2, tv_list3, tv_list4, tv_bg,tv_rider;
+    TextView tv_r_name, tv_r_phone, tv_r_gender, tv_r_age, tv_r_box, tv_1, tv_list1, tv_list2, tv_list3, tv_list4, tv_rider;
     DrawerLayout drawerLayout;
     Button btn_delivery, btn_mypage, btn_ad, btn_money, btn_notice, btn_home;
     JSONArray jarr, r_jarr;
@@ -64,7 +64,7 @@ public class MypageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mypage);
 
         // id 값 찾기
-        btn_review = findViewById(R.id.btn_review);
+
         ratingBar = findViewById(R.id.ratingBar);
         tv_r_name = findViewById(R.id.tv_r_name);
         tv_r_gender = findViewById(R.id.tv_r_gender);
@@ -88,19 +88,10 @@ public class MypageActivity extends AppCompatActivity {
 
         // listView에 사용되는 애들 id값 & invisible 설정
         list_review = findViewById(R.id.list_review);
-        list_review.setVisibility(View.INVISIBLE);
         tv_list1 = findViewById(R.id.tv_list1);
-        tv_list1.setVisibility(View.INVISIBLE);
         tv_list2 = findViewById(R.id.tv_list2);
-        tv_list2.setVisibility(View.INVISIBLE);
         tv_list3 = findViewById(R.id.tv_list3);
-        tv_list3.setVisibility(View.INVISIBLE);
         tv_list4 = findViewById(R.id.tv_list4);
-        tv_list4.setVisibility(View.INVISIBLE);
-        tv_bg = findViewById(R.id.tv_bg);
-        tv_bg.setVisibility(View.INVISIBLE);
-        ibtn_back = findViewById(R.id.ibtn_back);
-        ibtn_back.setVisibility(View.INVISIBLE);
 
         Intent intent = getIntent();
         r_id = intent.getExtras().getString("r_id");
@@ -273,37 +264,7 @@ public class MypageActivity extends AppCompatActivity {
             }
         });
 
-        // 버튼 클릭 시 listview 보이게 하고 첫 번째 화면은 안보이게 하기! -> 다른 페이지 전환 필요 X
-        btn_review.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                list_review.setVisibility(View.VISIBLE);
-                tv_list1.setVisibility(View.VISIBLE);
-                tv_list2.setVisibility(View.VISIBLE);
-                tv_list3.setVisibility(View.VISIBLE);
-                tv_list4.setVisibility(View.VISIBLE);
-                tv_bg.setVisibility(View.VISIBLE);
-                ibtn_back.setVisibility(View.VISIBLE);
-                ratingBar.setVisibility(View.INVISIBLE);
-                btn_review.setVisibility(View.INVISIBLE);
-            }
-        });
 
-        // 뒤로가기 버튼 눌렀을 때 첫 번째 화면 visible
-        ibtn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                list_review.setVisibility(View.INVISIBLE);
-                tv_list1.setVisibility(View.INVISIBLE);
-                tv_list2.setVisibility(View.INVISIBLE);
-                tv_list3.setVisibility(View.INVISIBLE);
-                tv_list4.setVisibility(View.INVISIBLE);
-                tv_bg.setVisibility(View.INVISIBLE);
-                ibtn_back.setVisibility(View.INVISIBLE);
-                ratingBar.setVisibility(View.VISIBLE);
-                btn_review.setVisibility(View.VISIBLE);
-            }
-        });
 
         // 별점 변경
         ratingBar.setNumStars(5);   // 보여줄 별 갯수

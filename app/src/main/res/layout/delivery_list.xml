@@ -7,86 +7,97 @@
     android:background="#FFFFFF">
 
     <TextView
-        android:id="@+id/tv_shop"
+        android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/jua"
-        android:text="가게이름"
-        android:textColor="#000000"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_allprice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginLeft="136dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/jua"
-        android:text="(물건가격)"
-        android:textColor="#070707"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginLeft="176dp"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/jua"
         android:text="원"
         android:textColor="#000000"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/tv_call"
+        app:layout_constraintTop_toTopOf="@+id/tv_call" />
 
     <TextView
         android:id="@+id/tv_call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
+        android:layout_marginTop="3dp"
         android:fontFamily="@font/jua"
         android:text="콜비"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/tv_allprice"
+        app:layout_constraintTop_toBottomOf="@+id/tv_allprice" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:fontFamily="@font/jua"
+        android:text="원"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_allprice"
+        app:layout_constraintStart_toEndOf="@+id/tv_allprice"
+        app:layout_constraintTop_toTopOf="@+id/tv_allprice"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/jua"
+        android:text="가게이름"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <TextView
+        android:id="@+id/tv_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:fontFamily="@font/jua"
+        android:text="음식명"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_shop"
+        app:layout_constraintStart_toEndOf="@+id/tv_shop"
+        app:layout_constraintTop_toTopOf="@+id/tv_shop"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_allprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:fontFamily="@font/jua"
+        android:text="(물건가격)"
+        android:textColor="#070707"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_food"
+        app:layout_constraintStart_toEndOf="@+id/tv_food"
+        app:layout_constraintTop_toTopOf="@+id/tv_food"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tv_c_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
         android:fontFamily="@font/jua"
         android:text="고객주소"
         android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_hometime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:fontFamily="@font/jua"
-        android:text="고객도착시간"
-        android:textColor="#F34021"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tv_shoplocation"
@@ -94,75 +105,102 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/jua"
         android:text="가게주소"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_house"
-        android:layout_width="68dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="68dp"
+        android:id="@+id/tv_hometime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
         android:fontFamily="@font/jua"
-        android:text="가게-고객거리"
+        android:text="고객도착시간"
+        android:textColor="#F34021"
+        app:layout_constraintBottom_toBottomOf="@+id/textView26"
+        app:layout_constraintStart_toEndOf="@+id/textView26"
+        app:layout_constraintTop_toTopOf="@+id/textView26"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_house"
+        android:layout_width="33dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/jua"
+        android:text="22km"
         android:textColor="#000000"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="23dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="204dp"
-        android:layout_marginRight="204dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="32dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_shoplocation"
+        app:layout_constraintStart_toEndOf="@+id/tv_shoplocation"
+        app:layout_constraintTop_toTopOf="@+id/tv_shoplocation"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/fastforward" />
 
     <TextView
         android:id="@+id/tv_shoptime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
         android:fontFamily="@font/jua"
-        android:text="가게도착시간"
+        android:text="30분"
         android:textColor="#2196F3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView25"
+        app:layout_constraintStart_toEndOf="@+id/textView25"
+        app:layout_constraintTop_toTopOf="@+id/textView25"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/tv_food"
+        android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/jua"
-        android:text="음식명"
-        android:textColor="#000000"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="내 위치부터"
+        app:layout_constraintStart_toStartOf="@+id/tv_shoplocation"
+        app:layout_constraintTop_toTopOf="@+id/tv_house" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:fontFamily="@font/jua"
-        android:text="원"
+        android:text="콜/배달비"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_call"
+        app:layout_constraintEnd_toStartOf="@+id/tv_call"
+        app:layout_constraintTop_toTopOf="@+id/tv_call"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:fontFamily="@font/jua"
+        android:text="목적지까지"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_house"
+        app:layout_constraintStart_toEndOf="@+id/tv_house"
+        app:layout_constraintTop_toTopOf="@+id/tv_house"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

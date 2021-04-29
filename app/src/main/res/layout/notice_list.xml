@@ -5,14 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tv_num"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:layout_marginStart="56dp"
     android:layout_marginLeft="56dp"
     android:layout_marginTop="36dp"
     android:text="TextView"
-    android:background="#d3d3d3"
+    android:gravity="center"
+    android:background="#FFFFFF"
     android:fontFamily="@font/nanumbold"
-    android:textSize="18sp"
+    android:textSize="20sp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 

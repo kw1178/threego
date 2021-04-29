@@ -10,6 +10,8 @@
         android:layout_marginTop="60dp"
         android:text="TextView"
         android:textSize="18sp"
+        android:gravity="center"
+        android:fontFamily="@font/nanumbold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="parent"

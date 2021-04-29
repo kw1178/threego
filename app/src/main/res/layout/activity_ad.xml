@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/drop_shadow"
+        android:background="@drawable/drop_shadow2"
         tools:context=".AdActivity">
 
         <androidx.constraintlayout.widget.Guideline
@@ -26,21 +26,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.1" />
+            app:layout_constraintGuide_percent="0.12" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.3" />
+            app:layout_constraintGuide_percent="0.5" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.62" />
+            app:layout_constraintGuide_percent="0.75" />
 
         <TextView
             android:id="@+id/textView4"
@@ -86,14 +86,58 @@
             android:id="@+id/tv_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="112dp"
             android:fontFamily="@font/nanumbold"
             android:text="- 현재 광고 수익 :"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline14" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanumbold"
+            android:text="0 / 0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_4"
+            app:layout_constraintStart_toEndOf="@+id/tv_4"
+            app:layout_constraintTop_toTopOf="@+id/tv_4"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tv_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="264dp"
+            android:layout_marginRight="264dp"
+            android:fontFamily="@font/nanumbold"
+            android:text="- 필수 송출 횟수 :"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_2" />
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="15dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:fontFamily="@font/nanumbold"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_2"
+            app:layout_constraintStart_toEndOf="@+id/tv_2"
+            app:layout_constraintTop_toTopOf="@+id/tv_2"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tv_ad_basic"
@@ -108,21 +152,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/nanumbold"
-            android:text="0 / 0"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_4"
-            app:layout_constraintStart_toEndOf="@+id/tv_4"
-            app:layout_constraintTop_toTopOf="@+id/tv_4"
-            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/tv_ad_name"
@@ -140,34 +169,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline12" />
 
-        <TextView
-            android:id="@+id/tv_money"
-            android:layout_width="15dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:fontFamily="@font/nanumbold"
-            android:text="0"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_2"
-            app:layout_constraintStart_toEndOf="@+id/tv_2"
-            app:layout_constraintTop_toTopOf="@+id/tv_2" />
-
-        <TextView
-            android:id="@+id/tv_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="264dp"
-            android:layout_marginRight="264dp"
-            android:fontFamily="@font/nanumbold"
-            android:text="- 필수 송출 횟수 : "
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tv_2"
-            app:layout_constraintTop_toBottomOf="@+id/tv_2" />
-
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
@@ -179,28 +180,28 @@
 
         </ListView>
 
+
         <VideoView
             android:id="@+id/videoView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="148dp"
+            android:layout_height="117dp"
             android:layout_marginStart="60dp"
             android:layout_marginLeft="60dp"
             android:layout_marginEnd="60dp"
             android:layout_marginRight="60dp"
-            android:layout_marginBottom="40dp"
-            app:layout_constraintBottom_toTopOf="@+id/listView"
+            app:layout_constraintBottom_toTopOf="@+id/tv_ad_basic"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.488"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_ad_name" />
 
-
         <com.dinuscxj.progressbar.CircleProgressBar
             android:id="@+id/circle"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
+            android:layout_width="105dp"
+            android:layout_height="99dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginRight="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline14"
             app:progress_end_color="#ABF200"

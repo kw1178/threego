@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/drop_shadow"
+        android:background="@drawable/drop_shadow2"
         tools:context=".MypageActivity">
 
         <androidx.constraintlayout.widget.Guideline
@@ -38,8 +38,8 @@
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="452dp"
+            android:layout_height="83dp"
             android:background="#FFFFFF"
             android:fontFamily="@font/jua"
             android:gravity="center"
@@ -69,22 +69,25 @@
             android:id="@+id/tv_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/nanumbold"
             android:text="text"
-            android:textSize="30sp"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.112"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline14" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
         <TextView
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="140dp"
-            android:layout_marginLeft="140dp"
+            android:layout_marginStart="132dp"
+            android:layout_marginLeft="132dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/nanumbold"
-            android:text="배달통 번호 :"
-            android:textSize="18sp"
+            android:text="광주 - "
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline12" />
@@ -95,8 +98,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/nanumbold"
-            android:text="성별 :"
-            android:textSize="18sp"
+            android:text="성별/나이"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -105,15 +108,15 @@
             android:id="@+id/tv_r_box"
             android:layout_width="99dp"
             android:layout_height="21dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="84dp"
+            android:layout_marginRight="84dp"
             android:fontFamily="@font/nanumbold"
             android:gravity="center"
             android:text="TextView"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView19"
-            app:layout_constraintStart_toEndOf="@+id/textView19"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView19"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -130,27 +133,15 @@
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
         <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/nanumbold"
-            android:text="나이 :"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-        <TextView
             android:id="@+id/tv_r_phone"
             android:layout_width="140dp"
             android:layout_height="23dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:fontFamily="@font/nanumbold"
             android:gravity="start|left"
             android:text="TextView"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView21"
             app:layout_constraintStart_toEndOf="@+id/textView21"
@@ -161,17 +152,16 @@
             android:id="@+id/tv_r_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginRight="56dp"
             android:fontFamily="@font/nanumbold"
             android:gravity="center"
             android:text="25"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView17"
-            app:layout_constraintEnd_toEndOf="@+id/tv_r_gender"
-            app:layout_constraintTop_toTopOf="@+id/textView17"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_r_gender"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_r_gender" />
 
         <TextView
             android:id="@+id/tv_r_name"
@@ -180,7 +170,7 @@
             android:fontFamily="@font/nanumbold"
             android:gravity="center"
             android:text="TextView"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
@@ -193,133 +183,88 @@
             android:id="@+id/tv_r_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="92dp"
+            android:layout_marginRight="92dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/nanumbold"
             android:gravity="center"
             android:text="성별"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView11"
-            app:layout_constraintEnd_toEndOf="@+id/tv_r_name"
-            app:layout_constraintHorizontal_bias="0.288"
-            app:layout_constraintStart_toEndOf="@+id/textView11"
-            app:layout_constraintTop_toTopOf="@+id/textView11"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBottom_toTopOf="@+id/tv_r_phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView11" />
 
         <TextView
             android:id="@+id/textView21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="7dp"
             android:fontFamily="@font/nanumbold"
             android:text="연락처 : "
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textView17"
-            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
         <TextView
             android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="36dp"
-            android:layout_marginBottom="232dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="420dp"
+            android:fontFamily="@font/nanumbold"
             android:text="평점 : "
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/btn_review"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_round"
-            android:text="한줄평 확인"
-            android:textSize="18sp"
-            app:backgroundTint="#2B2626"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.372"
-            app:layout_constraintStart_toStartOf="@+id/textView22"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-            app:layout_constraintVertical_bias="0.421" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_1"
+            app:layout_constraintVertical_bias="0.01" />
 
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="101dp"
             android:layout_height="114dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline12"
             app:srcCompat="@drawable/bike" />
 
-
-                <TextView
-                    android:id="@+id/tv_bg"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/guideline12" />
-
-                <ListView
-                    android:id="@+id/list_review"
-                    android:background="@drawable/drop_shadow"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/guideline12" />
-
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:isIndicator="true"
             app:layout_constraintBottom_toBottomOf="@+id/textView22"
             app:layout_constraintStart_toEndOf="@+id/textView22"
             app:layout_constraintTop_toTopOf="@+id/textView22"
-            app:layout_constraintVertical_bias="0.484" />
+            app:layout_constraintVertical_bias="0.545" />
 
         <TextView
             android:id="@+id/tv_list1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#F8E9BC"
-            app:layout_constraintBottom_toTopOf="@+id/guideline12"
+            android:layout_width="362dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="28dp"
+            android:background="#FFFBDF"
+            android:fontFamily="@font/nanumbold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline14"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <ImageButton
-            android:id="@+id/ibtn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:background="#F8E9BC"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_list2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_list2"
-            app:layout_constraintVertical_bias="0.458"
-            app:srcCompat="@drawable/abc_vector_test" />
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
         <TextView
             android:id="@+id/tv_list2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
             android:fontFamily="@font/nanumbold"
             android:text="한줄평"
             android:textSize="20sp"
@@ -330,25 +275,11 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/tv_list3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/nanumbold"
-            android:text="고객번호"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/tv_list1"
-            app:layout_constraintTop_toTopOf="@+id/guideline14" />
-
-        <TextView
             android:id="@+id/tv_list4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
             android:fontFamily="@font/nanumbold"
             android:text="주문번호"
             android:textSize="20sp"
@@ -356,8 +287,33 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_list3"
             app:layout_constraintStart_toEndOf="@+id/tv_list3"
             app:layout_constraintTop_toTopOf="@+id/tv_list3"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 
+        <TextView
+            android:id="@+id/tv_list3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nanumbold"
+            android:text="고객번호"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_list1"
+            app:layout_constraintTop_toTopOf="@+id/tv_list1" />
+
+        <ListView
+            android:id="@+id/list_review"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#00FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_list1"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
