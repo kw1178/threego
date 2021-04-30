@@ -219,6 +219,7 @@ public class MypageActivity extends AppCompatActivity {
                 Intent intent = new Intent(MypageActivity.this, MainActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
         btn_delivery.setOnClickListener(new View.OnClickListener() {
@@ -227,6 +228,7 @@ public class MypageActivity extends AppCompatActivity {
                 Intent intent = new Intent(MypageActivity.this, ListActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -236,6 +238,7 @@ public class MypageActivity extends AppCompatActivity {
                 Intent intent = new Intent(MypageActivity.this, MypageActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -245,6 +248,7 @@ public class MypageActivity extends AppCompatActivity {
                 Intent intent = new Intent(MypageActivity.this, AdActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -254,13 +258,16 @@ public class MypageActivity extends AppCompatActivity {
                 Intent intent = new Intent(MypageActivity.this, MoneyActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
         btn_notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, NoticeActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 

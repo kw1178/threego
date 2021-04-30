@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="450dp" />
+            app:layout_constraintGuide_begin="715dp" />
 
         <TextView
             android:id="@+id/textView4"
@@ -122,15 +122,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline14" />
 
-                <ListView
+        <ListView
             android:id="@+id/list_review"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="363dp"
+            android:layout_height="329dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline12">
+            app:layout_constraintTop_toTopOf="@+id/guideline12"
+            app:layout_constraintVertical_bias="0.0">
 
         </ListView>
 

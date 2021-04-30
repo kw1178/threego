@@ -13,7 +13,7 @@
     android:gravity="center"
     android:background="#FFFFFF"
     android:fontFamily="@font/nanumbold"
-    android:textSize="20sp"
+    android:textSize="16sp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 

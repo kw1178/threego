@@ -130,6 +130,7 @@ public class MoneyActivity extends AppCompatActivity {
 
                     Intent intent1 = new Intent(MoneyActivity.this,OutputActivity.class);
                     intent1.putExtra("allmoney",tv_allmoney.getText().toString());
+                    intent1.putExtra("r_id",r_id);
                     startActivity(intent1);
                     finish();
                 }else{
@@ -158,6 +159,7 @@ public class MoneyActivity extends AppCompatActivity {
                 Intent intent = new Intent(MoneyActivity.this, ListActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -167,6 +169,7 @@ public class MoneyActivity extends AppCompatActivity {
                 Intent intent = new Intent(MoneyActivity.this, MypageActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -176,6 +179,7 @@ public class MoneyActivity extends AppCompatActivity {
                 Intent intent = new Intent(MoneyActivity.this, AdActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -185,13 +189,16 @@ public class MoneyActivity extends AppCompatActivity {
                 Intent intent = new Intent(MoneyActivity.this, MoneyActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
         btn_notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MoneyActivity.this, NoticeActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 

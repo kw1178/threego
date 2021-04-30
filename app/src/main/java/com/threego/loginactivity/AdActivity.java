@@ -1,12 +1,7 @@
 package com.threego.loginactivity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.media.MediaMetadataRetriever;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +15,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -52,8 +51,8 @@ public class AdActivity extends AppCompatActivity {
     TextView tv_money, tv_ad_name, tv_time, tv_rider, textView6;
     ProgressBar pro;
     CircleProgressBar circle;
-    VideoView videoView;
-    MediaController mediaController;
+    //VideoView videoView;
+    //MediaController mediaController;
     //String videoUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"; // 경로, 확장자까지 필요
     DrawerLayout drawerLayout;
     Button btn_delivery, btn_mypage, btn_ad, btn_money, btn_notice, btn_change, btn_home;
@@ -71,14 +70,14 @@ public class AdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad);
 
-        tv_ad_name = findViewById(R.id.tv_ad_name);
+        //tv_ad_name = findViewById(R.id.tv_ad_name);
         tv_money = findViewById(R.id.tv_money);
         tv_time = findViewById(R.id.tv_time);
 
         //pro = findViewById(R.id.pro);
         circle = findViewById(R.id.circle);
 
-        videoView = (VideoView) findViewById(R.id.videoView);
+        //videoView = (VideoView) findViewById(R.id.videoView);
         //iv_gif = findViewById(R.id.imageView4);
         //Glide.with(this).load("https://media4.giphy.com/media/K4x1ZL36xWCf6/giphy.gif").into(iv_gif);
 
@@ -125,6 +124,7 @@ public class AdActivity extends AppCompatActivity {
                 Intent intent = new Intent(AdActivity.this, ListActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -134,6 +134,7 @@ public class AdActivity extends AppCompatActivity {
                 Intent intent = new Intent(AdActivity.this, MypageActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -143,6 +144,7 @@ public class AdActivity extends AppCompatActivity {
                 Intent intent = new Intent(AdActivity.this, AdActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -152,13 +154,16 @@ public class AdActivity extends AppCompatActivity {
                 Intent intent = new Intent(AdActivity.this, MoneyActivity.class);
                 intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
         btn_notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdActivity.this, NoticeActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -167,15 +172,15 @@ public class AdActivity extends AppCompatActivity {
         //tv_money.setText("2350");
 
         vidReq = Volley.newRequestQueue(getApplicationContext());
-        String vidUrl = "http://222.102.104.235:8081/threego/appvid.do";
+        String vidUrl = "http://222.102.104.230:8081/threego/appvid.do";
 
         vidStrReq = new StringRequest(Request.Method.POST, vidUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //Log.d("test", response.toString());
+                Log.d("test", response.toString());
                 try {
                     obj = new JSONObject(response);
-                    tv_ad_name.setText(obj.getString("a_contents")+" : "+obj.getString("a_name"));
+                    //tv_ad_name.setText(obj.getString("a_contents")+" : "+obj.getString("a_name"));
                     tv_time.setText(obj.getInt("a_time")+" / 100회");
                     tv_money.setText(String.valueOf((100-obj.getInt("a_time"))*60)+"원");
                     circle.setProgress(100-obj.getInt("a_time"));
@@ -183,15 +188,15 @@ public class AdActivity extends AppCompatActivity {
                     String adnum = obj.getString("a_adnum");
 
                     if(obj.getInt("a_time")>0){
-                        int id = getRawResIdByName("alssa");
-                        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+id);
-                        videoView.setVideoURI(uri); // url 연결
-                        videoView.start();
+                        //int id = getRawResIdByName("alssa");
+                        //Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+id);
+                        //videoView.setVideoURI(uri); // url 연결
+                        //videoView.start();
 
                     }else if(obj.getInt("a_time")==0){
                         // 광고 횟수 0이 되면 예치금으로 업데이트되는 통신
                         moneyReq = Volley.newRequestQueue(getApplicationContext());
-                        String moneyUrl = "http://222.102.104.235:8081/threego/moneyUpdate.do";
+                        String moneyUrl = "http://222.102.104.230:8081/threego/moneyUpdate.do";
 
                         moneyStrReq = new StringRequest(Request.Method.POST, moneyUrl, new Response.Listener<String>() {
                             @Override
@@ -241,9 +246,9 @@ public class AdActivity extends AppCompatActivity {
         vidReq.add(vidStrReq);
 
         // videoView 사용하기
-        mediaController = new MediaController(this); // 미디어 제어 부분
-        mediaController.setAnchorView(videoView);   // videoView에 연결
-        videoView.setMediaController(mediaController);  // 미디어 제어 부분 세팅
+        //mediaController = new MediaController(this); // 미디어 제어 부분
+        //mediaController.setAnchorView(videoView);   // videoView에 연결
+        //videoView.setMediaController(mediaController);  // 미디어 제어 부분 세팅
 
 
         // progress bar 바꾸기, 알고리즘 필요
@@ -263,16 +268,16 @@ public class AdActivity extends AppCompatActivity {
                     for(int i=0; i<arr.length(); i++){
                         JSONObject obj = arr.getJSONObject(i);
                         //if(obj.getString("a_type")=="pic") {
-                            AdVO vo = new AdVO();
-                            vo.setAdTitle(obj.getString("a_name"));
-                            vo.setSrc(obj.getString("a_src"));
-                            vo.setAdContent(obj.getString("a_contents"));
-                            vo.setAdType(obj.getString("a_type"));
-                            list.add(vo);
-                            //Log.d("test", vo.toString());
+                        AdVO vo = new AdVO();
+                        vo.setAdTitle(obj.getString("a_name"));
+                        vo.setSrc(obj.getString("a_src"));
+                        vo.setAdContent(obj.getString("a_contents"));
+                        vo.setAdType(obj.getString("a_type"));
+                        list.add(vo);
+                        //Log.d("test", vo.toString());
 
-                            adapter = new AdAdapter(getApplication(), R.layout.ad_list, list);
-                            lv.setAdapter(adapter);
+                        adapter = new AdAdapter(getApplication(), R.layout.ad_list, list);
+                        lv.setAdapter(adapter);
                     }
 
                 } catch (Exception e) {

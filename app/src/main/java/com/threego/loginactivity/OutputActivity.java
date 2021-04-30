@@ -14,6 +14,7 @@ public class OutputActivity extends AppCompatActivity {
     TextView tv_all_money;
     Button btn_output;
     EditText ed_number, ed_bank;
+    String r_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +28,18 @@ public class OutputActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String all_m = intent.getExtras().getString("allmoney");
+        r_id = intent.getExtras().getString("r_id");
 
         tv_all_money.setText(all_m+"원");
 
         btn_output.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),ed_bank.getText().toString()+", "+ed_number.getText().toString()+"으로 "+tv_all_money.getText().toString()+"출금되었습니다.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),ed_bank.getText().toString()+ed_number.getText().toString()+tv_all_money.getText().toString()+"출금되었습니다.",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(OutputActivity.this,MoneyActivity.class);
+                intent.putExtra("r_id",r_id);
+                startActivity(intent);
+                finish();
             }
         });
     }

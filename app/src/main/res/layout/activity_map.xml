@@ -5,7 +5,6 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/drop_shadow2"
     android:orientation="vertical"
     tools:context="com.threego.loginactivity.MapActivity2">
 
@@ -67,14 +66,12 @@
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="2px"
-            android:background="#3D3E3D"
+            android:layout_height="match_parent"
+            android:background="@drawable/view_round"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.143" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline26"
@@ -121,7 +118,7 @@
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/nanumbold"
             android:text="배달비"
             android:textSize="20sp"
@@ -147,11 +144,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/hanna"
+            android:fontFamily="@font/jua"
             android:gravity="center"
             android:text="여기에 고객주소가 나올건데 옆에 도착사진 하나 넣으면 좋을듯~"
             android:textSize="22sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guideline26"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -219,12 +215,16 @@
 
         <ListView
             android:id="@+id/listview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="350dp"
+            android:layout_height="124dp"
             android:clickable="true"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="-13dp"
-            tools:layout_editor_absoluteY="-80dp" />
+            app:layout_constraintBottom_toTopOf="@+id/tv_c_address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
+
+        </ListView>
 
         <TextView
             android:id="@+id/textView3"
@@ -240,6 +240,20 @@
             app:layout_constraintVertical_bias="0.23" />
 
         <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:fontFamily="@font/nanumbold"
+            android:text="배달지까지"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_distoshop"
+            app:layout_constraintStart_toEndOf="@+id/tv_distoshop"
+            app:layout_constraintTop_toTopOf="@+id/tv_distoshop"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
             android:id="@+id/tv_distoadd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -249,9 +263,9 @@
             android:text="2km"
             android:textColor="#1C8A1D"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView17"
-            app:layout_constraintStart_toEndOf="@+id/textView17"
-            app:layout_constraintTop_toTopOf="@+id/textView17"
+            app:layout_constraintBottom_toBottomOf="@+id/textView8"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toTopOf="@+id/textView8"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
@@ -261,26 +275,12 @@
             android:fontFamily="@font/nanumbold"
             android:text="10분 후 조리완료"
             android:textColor="#6A1F1F"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_map_food"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.796"
+            app:layout_constraintHorizontal_bias="0.64"
             app:layout_constraintStart_toEndOf="@+id/tv_map_food"
             app:layout_constraintTop_toTopOf="@+id/tv_map_food"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:fontFamily="@font/nanumbold"
-            android:text="배달지까지"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_distoshop"
-            app:layout_constraintStart_toEndOf="@+id/tv_distoshop"
-            app:layout_constraintTop_toTopOf="@+id/tv_distoshop"
             app:layout_constraintVertical_bias="0.0" />
 
 

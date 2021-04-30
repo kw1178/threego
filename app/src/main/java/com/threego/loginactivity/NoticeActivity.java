@@ -39,14 +39,14 @@ public class NoticeActivity extends AppCompatActivity {
     ImageButton ibtn_close;
     ArrayList<String> notice = new ArrayList<>();
     ListView listView;
-    TextView tv_1, tv_2, tv_3, tv_4, tv_admin, tv_num,tv_n_title, tv_n_date, tv_contents, tv_date_n, tv_title_n, tv_content, tv_hidden;
+    TextView tv_1, tv_2, tv_3, tv_4, tv_admin, tv_num,tv_n_title, tv_n_date, tv_contents, tv_date_n, tv_title_n, tv_content, tv_hidden, tv_rider;
     DrawerLayout drawerLayout;
     Button btn_delivery, btn_mypage, btn_ad, btn_money, btn_notice, btn_home;
     StringRequest stringRequest, stringRequest2;
     RequestQueue requestQueue, requestQueue2;
     JSONArray jarr;
     String[] nn;
-
+    String r_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class NoticeActivity extends AppCompatActivity {
         tv_admin = findViewById(R.id.tv_admin);
         tv_num = findViewById(R.id.tv_num);
         tv_hidden = findViewById(R.id.tv_hidden);
-        
+        tv_rider = findViewById(R.id.tv_rider);
         // 내용 숨기기
         tv_n_title = findViewById(R.id.tv_n_title);
         tv_n_title.setVisibility(View.INVISIBLE);
@@ -89,6 +89,10 @@ public class NoticeActivity extends AppCompatActivity {
         btn_money = findViewById(R.id.btn_money);
         btn_notice = findViewById(R.id.btn_notice);
         btn_home = findViewById(R.id.btn_home);
+
+        Intent intent = getIntent();
+        r_id = intent.getExtras().getString("r_id");
+
 
         // 통신 -> notice 화면
         String url ="http://222.102.104.230:8081/threego/notice.do";
@@ -238,7 +242,9 @@ public class NoticeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NoticeActivity.this, MainActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -246,7 +252,9 @@ public class NoticeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NoticeActivity.this, ListActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -254,7 +262,9 @@ public class NoticeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NoticeActivity.this, MypageActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -262,7 +272,9 @@ public class NoticeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NoticeActivity.this, AdActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -270,14 +282,18 @@ public class NoticeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NoticeActivity.this, MoneyActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
         btn_notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NoticeActivity.this, NoticeActivity.class);
+                intent.putExtra("r_id",r_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -286,6 +302,9 @@ public class NoticeActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             drawerLayout.openDrawer(START);
+            Intent intent = getIntent();
+            r_id = intent.getExtras().getString("r_id");
+            tv_rider.setText(r_id+"님 환영합니다!");
         }
     });
 
@@ -293,6 +312,7 @@ public class NoticeActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             drawerLayout.closeDrawer(START);
+
         }
     });
 
